@@ -24,11 +24,14 @@ public class GameManager : MonoBehaviour
     [HideInInspector]public float difficulty_scale_timer;
 
     [Header("HUD")]
-    public GameObject game_over_screen;
     public int enemy_kill_count;
     public int minutes_to_survive_to_win;
     [HideInInspector]public float time_elapsed;
     [HideInInspector]public int minutes_elapsed;
+
+    [Header("Menus")]
+    public GameObject game_over_screen;
+    public GameObject pause_menu;
 
     [Header("BGM")]
     public GameObject BGM;
@@ -52,6 +55,7 @@ public class GameManager : MonoBehaviour
 
     void Update() {
         if (!player_is_dead) timer();
+        if (Input.GetKeyDown(KeyCode.Escape)) enable_pause_menu();
     }
 
     public void player_takes_damage() {
@@ -95,7 +99,9 @@ public class GameManager : MonoBehaviour
     public void scale_difficulty_up() {
         enemy_damage_to_player *= difficulty_scale;
         enemy_time_to_spawn /= difficulty_scale;
-        print(enemy_damage_to_player);
-        print(enemy_time_to_spawn);
+    }
+
+    public void enable_pause_menu() {
+        pause_menu.SetActive(true);
     }
 }

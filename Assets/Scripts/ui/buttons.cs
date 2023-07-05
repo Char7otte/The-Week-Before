@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class buttons : MonoBehaviour
 {
+    public GameObject options_menu;
+
     public void start_game() {
         SceneManager.LoadScene("Game");
     }
@@ -15,5 +17,9 @@ public class buttons : MonoBehaviour
 
     public void quit_application() {
         Application.Quit();
+    }
+
+    public void open_options_menu(){
+        options_menu.SetActive(true);
     }
 }
