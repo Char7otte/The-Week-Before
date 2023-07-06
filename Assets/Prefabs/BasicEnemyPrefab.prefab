@@ -397,7 +397,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1091261361191970727}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 44.7, y: -0.039999872, z: -56.3}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -487,8 +487,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fae3fb2afe678444aa1f1e0d8ba09607, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movement_speed: 2
-  player: {fileID: 0}
+  movementSpeed: 3
 --- !u!114 &1091261361191970721
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -501,8 +500,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6a0b5c66029d6744b86070c64810361, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  max_health: 10
-  health: 0
+  maxHealth: 10
+  currentHealth: 0
 --- !u!114 &1091261361191970719
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -515,8 +514,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efc33e4d68f503541bc7b7b543956e4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  medkit_prefab: {fileID: 3693149711541537558, guid: 5d92dd283ae3f5649a19c21bf1944687, type: 3}
-  medkit_drop_chance: 5
+  medkitPrefab: {fileID: 3693149711541537558, guid: 5d92dd283ae3f5649a19c21bf1944687, type: 3}
+  medkitDropChance: 5
 --- !u!1 &1091261361224327587
 GameObject:
   m_ObjectHideFlags: 0
