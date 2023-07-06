@@ -12,12 +12,12 @@ public class HealthComponent : MonoBehaviour
         currentHealth = maxHealth;
     }
 
-    public void dealDamage(int damageDealt) {
+    public void DealDamage(int damageDealt) {
         currentHealth -= damageDealt;
         currentHealth = Mathf.Max(currentHealth, 0.0f);
     }
 
-    public bool isDeadSignal() {
+    public bool IsDeadSignal() {
         if (currentHealth <= 0) return true;
         return false;
     }

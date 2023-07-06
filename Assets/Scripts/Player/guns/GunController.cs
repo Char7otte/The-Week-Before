@@ -35,23 +35,23 @@ public class GunController : MonoBehaviour
     }
 
     private void Update() {
-        keyboard_input();
+        KeyboardInput();
         ammoCountText.SetText(remainingBulletsInMagazine + " / " + maxMagazineSize);
     }
 
-    private void keyboard_input() {
+    private void KeyboardInput() {
         shooting = Input.GetMouseButton(0);
         animator.SetBool("is_shooting", shooting);
 
         if (Input.GetKeyDown(KeyCode.R) && remainingBulletsInMagazine < maxMagazineSize && !reloading) 
-            reload();
+            Reload();
         
         if (readyToShoot && shooting && !reloading && remainingBulletsInMagazine > 0) {
-            shoot();
+            Shoot();
         }
     }
 
-    private void shoot() {
+    private void Shoot() {
         animator.SetBool("is_shooting", true);
         readyToShoot = false;
 
@@ -60,14 +60,14 @@ public class GunController : MonoBehaviour
 
         
         remainingBulletsInMagazine--;
-        Invoke("resetShot", timeBetweenShots);
+        Invoke("ResetShot", timeBetweenShots);
     }
 
-    private void resetShot() {
+    private void ResetShot() {
         readyToShoot = true;
     }
 
-    private void reload() {
+    private void Reload() {
         animator.SetBool("is_shooting", false);
         animator.SetBool("is_empty", true);
         reloading = true;
@@ -75,10 +75,10 @@ public class GunController : MonoBehaviour
         AudioManager.Instance.Play("rifle_reloading");
 
         animator.SetTrigger("reload");
-        Invoke("reloadFinished", animator.GetCurrentAnimatorStateInfo(1).length * 2);
+        Invoke("ReloadFinished", animator.GetCurrentAnimatorStateInfo(1).length * 2);
     }
 
-    private void reloadFinished() {
+    private void ReloadFinished() {
         reloading = false;
         remainingBulletsInMagazine = maxMagazineSize;
         animator.SetBool("is_empty", false);

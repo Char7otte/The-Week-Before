@@ -44,21 +44,21 @@ public class GameManager : MonoBehaviour
     }
 
     private void Update() {
-        if (!isPlayerDead) timer();
-        pauseMenuHandler();
+        if (!isPlayerDead) Timer();
+        PauseMenuHandler();
     }
 
-    public void playerTakesDamage() {
+    public void PlayerTakesDamage() {
         playerCurrentHealth -= enemyDamage;
         playerCurrentHealth = Mathf.Max(playerCurrentHealth, 0);
 
         //audioSource.PlayOneShot(playerTakesDamageSFX);
         AudioManager.Instance.Play("player_hurt");
 
-        if (playerCurrentHealth == 0) playerHasDied();
+        if (playerCurrentHealth == 0) PlayerHasDied();
     }
 
-    public void playerHasDied() {
+    public void PlayerHasDied() {
         isPlayerDead = true;
         //audioSource.PlayOneShot(PlayerDeadSFX);
         AudioManager.Instance.Play("player_died");
@@ -66,16 +66,16 @@ public class GameManager : MonoBehaviour
         AudioManager.Instance.Stop("BGM");
     }
 
-    public void gameOver() {
+    public void GameOver() {
         gameOverScreen.SetActive(true);
     }
 
-    public void timer() {
+    public void Timer() {
         timeElapsed += Time.deltaTime;
 
         difficultyScaleTimer += Time.deltaTime;
         if (difficultyScaleTimer >= difficultyScalingIntervalInSeconds) {
-            scaleDifficultyUp();
+            ScaleDifficultyUp();
             difficultyScaleTimer = 0.0f;
         }
 
@@ -85,16 +85,16 @@ public class GameManager : MonoBehaviour
         }
 
         if (minutesElapsed >= minutesToSurviveToWin) {
-            gameOver();
+            GameOver();
         }
     }
 
-    public void scaleDifficultyUp() {
+    public void ScaleDifficultyUp() {
         enemyDamage *= difficultyScale;
         enemyTimeToSpawn /= difficultyScale;
     }
 
-    public void pauseMenuHandler() {
+    public void PauseMenuHandler() {
         if (Input.GetKeyDown(KeyCode.Escape)) {
             pauseMenu.SetActive(!pauseMenu.activeSelf);
         }

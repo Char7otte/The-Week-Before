@@ -12,46 +12,42 @@ public class PlayerCollisions : MonoBehaviour
     [Header("Animations")]
     private Animator animator;
 
-
     void Start() {
         animator = GetComponent<Animator>();
     }
-
 
     void Update() {
         invincibilityFramesTimer = invincibilityFramesTimer - Time.deltaTime;
         invincibilityFramesTimer = Mathf.Max(invincibilityFramesTimer, 0.0f);
     }
 
-
     void OnCollisionEnter(Collision collision) {
-        if (collision.gameObject.tag == "Enemy" && invincibilityFramesTimer <= 0) enemyCollision();
+        if (collision.gameObject.tag == "Enemy" && invincibilityFramesTimer <= 0) EnemyCollision();
     }
 
     void OnCollisionStay(Collision collision) {
-        if (collision.gameObject.tag == "Enemy" && invincibilityFramesTimer <= 0) enemyCollision();
+        if (collision.gameObject.tag == "Enemy" && invincibilityFramesTimer <= 0) EnemyCollision();
     }
 
-
-    void enemyCollision() {
-        GameManager.Instance.playerTakesDamage();
+    void EnemyCollision() {
+        GameManager.Instance.PlayerTakesDamage();
         invincibilityFramesTimer = invincibilityFramesDuration;
 
         if (GameManager.Instance.isPlayerDead) {
-            disableComponentsUponDeath();
+            DisableComponentsUponDeath();
             animator.SetTrigger("dead");
-            Invoke("callGameOverInGameManager", animator.GetCurrentAnimatorStateInfo(0).length * 2);
+            Invoke("CallGameOverInGameManager", animator.GetCurrentAnimatorStateInfo(0).length * 2);
         }
     }
 
-    void disableComponentsUponDeath() {
+    void DisableComponentsUponDeath() {
         GetComponent<Collider>().enabled = false;
         GetComponent<PlayerMovementController>().enabled = false;
         GetComponent<GunController>().enabled = false;
         
     }
 
-    void callGameOverInGameManager() {
-        GameManager.Instance.gameOver();
+    void CallGameOverInGameManager() {
+        GameManager.Instance.GameOver();
     }
 }
