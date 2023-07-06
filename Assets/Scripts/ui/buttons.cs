@@ -5,27 +5,21 @@ using UnityEngine.SceneManagement;
 
 public class Buttons : MonoBehaviour
 {
-    public void startGame() {
+    [SerializeField]private GameObject optionsMenu;
+
+    public void StartGame() {
         SceneManager.LoadScene("Game");
     }
 
-    public void goToMainMenu() {
+    public void GoToMainMenu() {
         SceneManager.LoadScene("MainMenu");
     }
 
-    public void quitApplication() {
+    public void QuitApplication() {
         Application.Quit();
     }
 
-    public void openOptionsMenu(){
-        var optionsMenu = GameObject.Find("OptionsScreen");
-        optionsMenu.SetActive(true);
-    }
-    public void playSFX() {
-        AudioManager.Instance.Play("sfx");
-    }
-
-    public void playMusic() {
-        AudioManager.Instance.Play("music");
+    public void OpenAndCloseOptionsMenu(){
+        optionsMenu.SetActive(!optionsMenu.activeSelf);
     }
 }
