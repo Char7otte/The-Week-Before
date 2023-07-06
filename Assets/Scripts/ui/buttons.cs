@@ -21,9 +21,6 @@ public class Buttons : MonoBehaviour
         var optionsMenu = GameObject.Find("OptionsScreen");
         optionsMenu.SetActive(true);
     }
-<<<<<<< Updated upstream
-=======
-
     public void playSFX() {
         AudioManager.Instance.Play("sfx");
     }
@@ -31,5 +28,4 @@ public class Buttons : MonoBehaviour
     public void playMusic() {
         AudioManager.Instance.Play("music");
     }
->>>>>>> Stashed changes
 }
