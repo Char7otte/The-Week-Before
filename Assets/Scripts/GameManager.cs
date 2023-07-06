@@ -33,14 +33,6 @@ public class GameManager : MonoBehaviour
     public GameObject gameOverScreen;
     public GameObject pauseMenu;
 
-    [Header("BGM")]
-    public GameObject BGM;
-
-    [Header("SFX")]
-    public AudioClip playerTakesDamageSFX;
-    public AudioClip PlayerDeadSFX;
-    private AudioSource audioSource;
-
     private void Awake() {
         if (Instance != null && Instance != this) Destroy(this);
         else Instance = this;
@@ -49,8 +41,6 @@ public class GameManager : MonoBehaviour
     private void Start() {
         playerCurrentHealth = playerMaxHealth;
         playerCurrentStamina = playerMaxStamina;
-
-        audioSource = player.GetComponent<AudioSource>();
     }
 
     private void Update() {
@@ -62,15 +52,18 @@ public class GameManager : MonoBehaviour
         playerCurrentHealth -= enemyDamage;
         playerCurrentHealth = Mathf.Max(playerCurrentHealth, 0);
 
-        audioSource.PlayOneShot(playerTakesDamageSFX);
+        //audioSource.PlayOneShot(playerTakesDamageSFX);
+        AudioManager.Instance.Play("player_hurt");
 
         if (playerCurrentHealth == 0) playerHasDied();
     }
 
     public void playerHasDied() {
         isPlayerDead = true;
-        audioSource.PlayOneShot(PlayerDeadSFX);
-        BGM.SetActive(false);
+        //audioSource.PlayOneShot(PlayerDeadSFX);
+        AudioManager.Instance.Play("player_died");
+        //BGM.SetActive(false);
+        AudioManager.Instance.Stop("BGM");
     }
 
     public void gameOver() {

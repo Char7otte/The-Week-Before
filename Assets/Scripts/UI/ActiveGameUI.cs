@@ -11,6 +11,7 @@ public class ActiveGameUI : MonoBehaviour
     [SerializeField]private Image healthbarImage;
     [SerializeField]private TMP_Text staminaText;
     [SerializeField]private Image staminabarImage;
+    [SerializeField]private TMP_Text ammoText;
     //public TMP_Text ammoCountText; This is managed by player's GunController
 
     private void Update() {

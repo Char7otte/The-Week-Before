@@ -9,7 +9,7 @@ public class AudioManager : MonoBehaviour
     public static AudioManager Instance;
 
     [SerializeField]private AudioMixerGroup musicVolumeSlider;
-    [SerializeField]private AudioMixerGroup sfxVolumeSlider;
+    [SerializeField]private AudioMixerGroup SFXVolumeSlider;
     [SerializeField]private Sound[] sounds;
 
     private void Awake() {
@@ -27,7 +27,7 @@ public class AudioManager : MonoBehaviour
                     s.audioSource.outputAudioMixerGroup = musicVolumeSlider;
                     break;
                 case Sound.AudioType.sfx:
-                    s.audioSource.outputAudioMixerGroup = sfxVolumeSlider;
+                    s.audioSource.outputAudioMixerGroup = SFXVolumeSlider;
                     break;
                 default:
                     break;             
@@ -44,7 +44,9 @@ public class AudioManager : MonoBehaviour
             return;
         }
         
-        s.audioSource.Play();
+        //s.audioSource.Play();
+        AudioClip audioclip = s.audioSource.clip;
+        s.audioSource.PlayOneShot(audioclip);
     }
 
     public void Stop(string clipname) {
@@ -53,7 +55,7 @@ public class AudioManager : MonoBehaviour
             print(clipname + " does not exist.");
             return;
         }
-        
+
         s.audioSource.Stop();
     }
 

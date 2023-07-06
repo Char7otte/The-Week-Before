@@ -9,9 +9,17 @@ public class GameOverScreen : MonoBehaviour
     [SerializeField]private TMP_Text timerText;
     [SerializeField]private TMP_Text killCounterText;
 
+    private void Start() {
+        // foreach (Transform child in transform) {
+        //     if (child == TMP_Text) {
+        //         allTextInMenu.add
+        //     }
+        // }
+    }
+
     private void OnEnable() {
         Time.timeScale = 0.0f;
-        
+
         if (!GameManager.Instance.isPlayerDead) changeTextColorToGreen();
         updateUIText();
     }

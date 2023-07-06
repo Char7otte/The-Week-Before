@@ -64,7 +64,6 @@ public class EnemyCollision : MonoBehaviour
 
     void RollForChanceToSpawnMedkit() {
         var randomInt = Random.Range(0, 100);
-        print(randomInt);
         if (randomInt < medkitDropChance) Instantiate(medkitPrefab, transform.position, Quaternion.identity);
     }
 
