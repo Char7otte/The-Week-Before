@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class bullet_collisions : MonoBehaviour
+public class BulletCollision : MonoBehaviour
 {
-    void OnTriggerEnter(Collider other) {
+    private void OnTriggerEnter(Collider other) {
         if (other.gameObject.tag == "Enemy") {
             Destroy(gameObject);
         }

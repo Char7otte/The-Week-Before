@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraController : MonoBehaviour
+public class oldCameraController : MonoBehaviour
 {
     public GameObject playerCharacter;
     public Vector3 cameraPosOffset = new Vector3(0, 15, -8);

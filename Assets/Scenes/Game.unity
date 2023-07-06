@@ -558,25 +558,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 325605627}
-  player_max_health: 20
-  player_current_health: 0
-  player_is_dead: 0
-  player_max_stamina: 100
-  player_current_stamina: 0
-  enemy_damage_to_player: 1
-  enemy_time_to_spawn: 1.5
-  difficulty_scaling_interval: 5
-  difficulty_scale: 1.02
-  difficulty_scale_timer: 0
-  enemy_kill_count: 0
-  minutes_to_survive_to_win: 1
-  time_elapsed: 0
-  minutes_elapsed: 0
-  game_over_screen: {fileID: 1481348826}
-  pause_menu: {fileID: 447068180}
+  playerMaxHealth: 20
+  playerCurrentHealth: 0
+  isPlayerDead: 0
+  playerMaxStamina: 100
+  playerCurrentStamina: 0
+  enemyDamage: 1
+  enemyTimeToSpawn: 3
+  difficultyScalingIntervalInSeconds: 5
+  difficultyScale: 1.1
+  difficultyScaleTimer: 0
+  enemyKillCount: 0
+  minutesToSurviveToWin: 1
+  timeElapsed: 0
+  minutesElapsed: 0
+  gameOverScreen: {fileID: 1481348826}
+  pauseMenu: {fileID: 447068180}
   BGM: {fileID: 750208429}
-  player_takes_damage_sfx: {fileID: 8300000, guid: 3abb3d10d5b13e9468c0ff26946a8c2b, type: 3}
-  player_is_dead_sfx: {fileID: 8300000, guid: c66b862275a83a443a1611260c3e5d87, type: 3}
+  playerTakesDamageSFX: {fileID: 0}
+  PlayerDeadSFX: {fileID: 0}
 --- !u!4 &59570627
 Transform:
   m_ObjectHideFlags: 0
@@ -585,7 +585,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 59570625}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1306.4878, y: 866.73596, z: 29.409706}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1982,13 +1982,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58fbe0bc0cdcadf438f87231d20a3479, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gm: {fileID: 0}
-  movement_velocity: 1500
-  stamina_drain_speed: 30
-  stamina_regenerate_speed: 20
-  time_before_stamina_regenerates: 3
+  movementSpeed: 1500
+  staminaDrainSpeed: 2
+  staminaRegenerateSpeed: 1
+  timeBeforeStaminaRegenerates: 3
   timer: 0
-  sprint_speed_multiplier: 1.2
+  sprintSpeedMultiplier: 1.2
 --- !u!114 &325605634
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2129,16 +2128,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 2
-  max_magazine_size: 30
-  time_between_shots: 0.1
-  reload_speed: 2
-  bullet_prefab: {fileID: 3737934860874390273, guid: e381297094c755f40825bebc3cadbc64, type: 3}
-  bullet_spawn_point: {fileID: 424446100}
-  parent_of_bullets: {fileID: 1479587729}
-  ammo_count_text: {fileID: 887672889}
-  audio_clip:
-  - {fileID: 8300000, guid: a275995d390edc24096cad8ec615afe6, type: 3}
-  - {fileID: 8300000, guid: d82563938f46f004188e89ed1dac0c6d, type: 3}
+  maxMagazineSize: 30
+  timeBetweenShots: 0.1
+  reloadSpeed: 0
+  bulletPrefab: {fileID: 0}
+  bulletSpawnPoint: {fileID: 0}
+  bulletsGroup: {fileID: 0}
+  ammoCountText: {fileID: 0}
+  audioClip: []
 --- !u!114 &325605641
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2151,7 +2148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8a18ad1ca565874ca909cb9f9e0e9c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  invincibility_frames_amount: 1
+  invincibilityFramesDuration: 1
 --- !u!82 &325605643
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3519,7 +3516,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 750208429}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 52.9, y: 0, z: -54.2}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3780,7 +3777,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afe99b4a483f5094593b0afde3ce304a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  options_menu: {fileID: 1382766746}
 --- !u!1 &800452082
 GameObject:
   m_ObjectHideFlags: 0
@@ -3810,10 +3806,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d732a94d554b2c41aec6037c42b605c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy_spawn_anchor: {fileID: 1476455397}
-  enemy_spawn_location: {fileID: 633865585}
-  parent_of_enemies: {fileID: 1798636424}
-  basic_enemy_prefab: {fileID: 1091261361191970727, guid: 0e162782f4e680540995253dbc4d282b, type: 3}
+  enemySpawnAnchor: {fileID: 0}
+  enemySpawnLocation: {fileID: 0}
+  enemiesGroup: {fileID: 0}
+  basicEnemyPrefab: {fileID: 0}
 --- !u!4 &800452084
 Transform:
   m_ObjectHideFlags: 0
@@ -3998,6 +3994,70 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 887672887}
   m_CullTransparentMesh: 1
+<<<<<<< Updated upstream
+=======
+--- !u!1 &906779426
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 906779428}
+  - component: {fileID: 906779427}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &906779427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 906779426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3e6c7a3f18bfab43912cacd2ab14a8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  musicVolumeSlider: {fileID: 0}
+  sfxVolumeSlider: {fileID: 0}
+  sounds:
+  - audioType: 0
+    audioSource: {fileID: 0}
+    clipName: 
+    audioClip: {fileID: 0}
+    playOnAwake: 0
+    isLooping: 0
+    volume: 0.5
+  - audioType: 0
+    audioSource: {fileID: 0}
+    clipName: 
+    audioClip: {fileID: 0}
+    playOnAwake: 0
+    isLooping: 0
+    volume: 0.5
+--- !u!4 &906779428
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 906779426}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 960, y: 290, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+>>>>>>> Stashed changes
 --- !u!1 &945056441
 GameObject:
   m_ObjectHideFlags: 0
@@ -4244,12 +4304,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 325605631}
+<<<<<<< Updated upstream
   camera_offset: {x: 0, y: 16, z: 0}
   camera_pan_speed: 50
   camera_return_speed: 0.1
   camera_border_leeway: 10
   camera_move_limit: 5
 --- !u!1 &1032441036
+=======
+  cameraOffset: {x: 0, y: 16, z: 0}
+  cameraPanSpeed: 50
+  cameraReturnSpeed: 0.1
+  cameraBorderLeeway: 10
+  cameraMoveDistanceLimit: 5
+--- !u!1 &1122179962
+>>>>>>> Stashed changes
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5070,11 +5139,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cac7ffa115ee7cd47bfd901e8d1e7276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  all_text_in_menu:
+  allTextInMenu:
   - {fileID: 1815262536}
-  - {fileID: 1676926918}
+  - {fileID: 1815262536}
   - {fileID: 760733243}
   - {fileID: 2094563475}
+<<<<<<< Updated upstream
   timer_text: {fileID: 1676926918}
   kill_counter_text: {fileID: 2094563475}
 --- !u!1 &1498739946
@@ -5211,6 +5281,10 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1498739946}
   m_CullTransparentMesh: 1
+=======
+  timerText: {fileID: 1676926918}
+  killCounterText: {fileID: 2094563475}
+>>>>>>> Stashed changes
 --- !u!1 &1560990627
 GameObject:
   m_ObjectHideFlags: 0
@@ -5560,11 +5634,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7816c4fc693e3ff46a472e1f2a78f30d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer_text: {fileID: 403221781}
-  health_text: {fileID: 1340867335}
-  healthbar_image: {fileID: 1934539635}
-  stamina_text: {fileID: 1404798664}
-  staminabar_image: {fileID: 712120372}
+  timerText: {fileID: 403221781}
+  healthText: {fileID: 1340867335}
+  healthbarImage: {fileID: 1934539635}
+  staminaText: {fileID: 1404798664}
+  staminabarImage: {fileID: 712120372}
 --- !u!1 &1748488258
 GameObject:
   m_ObjectHideFlags: 0

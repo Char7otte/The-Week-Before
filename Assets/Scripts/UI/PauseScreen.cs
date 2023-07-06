@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class pause_screen : MonoBehaviour
+public class PauseScreen : MonoBehaviour
 {
-    void OnEnable() {
+    private void OnEnable() {
         Time.timeScale = 0.0f;
     }
 
-    void OnDisable() {
+    private void OnDisable() {
         Time.timeScale = 1.0f;
     }
 }

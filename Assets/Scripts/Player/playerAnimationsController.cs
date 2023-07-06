@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class player_animations_controller : MonoBehaviour
+public class PlayerAnimationsController : MonoBehaviour
 {
     // public static player_animations_controller instance { get; private set; }
 

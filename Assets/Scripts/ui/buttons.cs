@@ -3,23 +3,33 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class buttons : MonoBehaviour
+public class Buttons : MonoBehaviour
 {
-    public GameObject options_menu;
-
-    public void start_game() {
+    public void startGame() {
         SceneManager.LoadScene("Game");
     }
 
-    public void main_menu() {
+    public void goToMainMenu() {
         SceneManager.LoadScene("MainMenu");
     }
 
-    public void quit_application() {
+    public void quitApplication() {
         Application.Quit();
     }
 
-    public void open_options_menu(){
-        options_menu.SetActive(true);
+    public void openOptionsMenu(){
+        var optionsMenu = GameObject.Find("OptionsScreen");
+        optionsMenu.SetActive(true);
     }
+<<<<<<< Updated upstream
+=======
+
+    public void playSFX() {
+        AudioManager.Instance.Play("sfx");
+    }
+
+    public void playMusic() {
+        AudioManager.Instance.Play("music");
+    }
+>>>>>>> Stashed changes
 }

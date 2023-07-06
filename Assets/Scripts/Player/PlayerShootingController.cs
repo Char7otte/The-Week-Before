@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class player_shooting_controller : MonoBehaviour
+public class PlayingShootingController : MonoBehaviour
 {
     // [Header("InstantiatingBullets")]
     // public GameObject bullet_prefab;
