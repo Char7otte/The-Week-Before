@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviour
 
     private void Update() {
         if (!isPlayerDead) timer();
-        if (Input.GetKeyDown(KeyCode.Escape)) enablePauseMenu();
+        pauseMenuHandler();
     }
 
     public void playerTakesDamage() {
@@ -94,7 +94,9 @@ public class GameManager : MonoBehaviour
         enemyTimeToSpawn /= difficultyScale;
     }
 
-    public void enablePauseMenu() {
-        pauseMenu.SetActive(true);
+    public void pauseMenuHandler() {
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+            pauseMenu.SetActive(!pauseMenu.activeSelf);
+        }
     }
 }
