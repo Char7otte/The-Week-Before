@@ -18,12 +18,12 @@ public class active_game_ui : MonoBehaviour
 
         float current_health = GameManager.instance.player_current_health;
         float max_health = GameManager.instance.player_max_health;
-        health_text.SetText("Health: " + current_health * 5);
+        health_text.SetText("Health: " + (current_health * 5).ToString("0"));
         healthbar_image.fillAmount = current_health / max_health;
 
         float current_stamina = GameManager.instance.player_current_stamina;
         float max_stamina =GameManager.instance.player_max_stamina;
-        stamina_text.SetText("Stamina:" + current_stamina.ToString("00"));
+        stamina_text.SetText("Stamina:" + current_stamina.ToString("0"));
         staminabar_image.fillAmount = current_stamina / max_stamina;
     }
 }
