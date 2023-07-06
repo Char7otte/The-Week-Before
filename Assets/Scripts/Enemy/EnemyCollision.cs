@@ -19,13 +19,13 @@ public class EnemyCollision : MonoBehaviour
 
     void OnCollisionEnter(Collision collision) {
         if (collision.gameObject.tag == "Player") {
-            attack();
+            Attack();
         }
     }
 
     void OnCollisionStay(Collision collision) {
         if (collision.gameObject.tag == "Player") {
-            attack();
+            Attack();
         }
     }
 
@@ -33,31 +33,31 @@ public class EnemyCollision : MonoBehaviour
         if (other.gameObject.tag == "Bullet") {
             var gunController = player.GetComponent<GunController>();
             var healthComponent = GetComponent<HealthComponent>();
-            healthComponent.dealDamage(gunController.damage);
+            healthComponent.DealDamage(gunController.damage);
 
-            if (healthComponent.isDeadSignal()) enemyHasDied();
+            if (healthComponent.IsDeadSignal()) EnemyHasDied();
         }
     }
 
-    void attack() {
+    void Attack() {
         if (!attacking) {
             attacking = true;
 
             animator.SetTrigger("attack");
-            Invoke("attackingHasFinished", animator.GetCurrentAnimatorStateInfo(0).length);
+            Invoke("AttackingHasFinished", animator.GetCurrentAnimatorStateInfo(0).length);
         }
     }
 
-    void attackingHasFinished() {
+    void AttackingHasFinished() {
         attacking = false;
     }
 
-    void enemyHasDied() {
+    void EnemyHasDied() {
         GetComponent<EnemyMovementController>().enabled = false;
         GetComponent<Collider>().enabled = false;
 
         RollForChanceToSpawnMedkit();
-        playDeathAnimation();
+        PlayDeathAnimation();
 
         GameManager.Instance.enemyKillCount++;
     } 
@@ -67,7 +67,7 @@ public class EnemyCollision : MonoBehaviour
         if (randomInt < medkitDropChance) Instantiate(medkitPrefab, transform.position, Quaternion.identity);
     }
 
-    void playDeathAnimation() {
+    void PlayDeathAnimation() {
         animator.SetTrigger("dead");
         Destroy(gameObject, animator.GetCurrentAnimatorStateInfo(0).length * 2);
     }

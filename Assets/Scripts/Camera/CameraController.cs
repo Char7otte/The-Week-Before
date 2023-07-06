@@ -31,7 +31,7 @@ public class CameraController : MonoBehaviour
             if (Input.mousePosition.x <= cameraBorderLeeway)
                 position.x -= cameraPanSpeed * Time.deltaTime; //Left
 
-            limitCameraPositionToPlayer();
+            LimitCameraPositionToPlayer();
         }
         else {
             position = Vector3.Lerp(position, player_position + cameraOffset, cameraReturnSpeed);
@@ -40,7 +40,7 @@ public class CameraController : MonoBehaviour
         transform.localPosition = position;
     }
 
-    private void limitCameraPositionToPlayer() {
+    private void LimitCameraPositionToPlayer() {
         var min_x = player_position.x - cameraMoveDistanceLimit;
         var max_x = player_position.x + cameraMoveDistanceLimit;
         var min_z = player_position.z - cameraMoveDistanceLimit;

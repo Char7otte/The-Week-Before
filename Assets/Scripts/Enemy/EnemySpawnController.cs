@@ -19,18 +19,18 @@ public class EnemySpawnController : MonoBehaviour
     }
 
     private void Update() {
-        if (spawnTimer >= timeToSpawn) instantiateEnemy();
+        if (spawnTimer >= timeToSpawn) InstantiateEnemy();
 
         spawnTimer += Time.deltaTime;
     }
 
-    private void instantiateEnemy() {
-        setSpawnLocation();
+    private void InstantiateEnemy() {
+        SetSpawnLocation();
         Instantiate(basicEnemyPrefab, enemySpawnLocation.position, Quaternion.identity, enemiesGroup);
         spawnTimer = 0.0f;
     }
 
-    private void setSpawnLocation() {
+    private void SetSpawnLocation() {
         enemySpawnAnchor.rotation = Quaternion.Euler(0, Random.Range(0, 359), 0);
     }
 }
