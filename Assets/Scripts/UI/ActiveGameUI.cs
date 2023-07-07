@@ -11,8 +11,7 @@ public class ActiveGameUI : MonoBehaviour
     [SerializeField]private Image healthbarImage;
     [SerializeField]private TMP_Text staminaText;
     [SerializeField]private Image staminabarImage;
-    [SerializeField]private TMP_Text ammoText;
-    //public TMP_Text ammoCountText; This is managed by player's GunController
+    //[SerializeField]private TMP_Text ammoText; Managed by GunController
 
     private void Update() {
         timerText.SetText(GameManager.Instance.minutesElapsed.ToString("00") + " : " + GameManager.Instance.timeElapsed.ToString("00"));
