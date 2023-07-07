@@ -11,7 +11,7 @@ public class EnemyMovementController : MonoBehaviour
     private GameObject player;
 
     private void Start() {
-        player = GameObject.Find("Player");
+        player = GameManager.Instance.player;
     }
 
     private void Update() {

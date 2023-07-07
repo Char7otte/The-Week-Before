@@ -9,6 +9,9 @@ public class GameManager : MonoBehaviour
 
     public GameObject player;
 
+    [Header("PlayerCharacterInitialization")]
+    public GameObject[] playerCharacters;
+
     [Header("PlayerValues")]
     public float playerMaxHealth = 20;
     public float playerCurrentHealth;
@@ -42,6 +45,8 @@ public class GameManager : MonoBehaviour
     private void Start() {
         playerCurrentHealth = playerMaxHealth;
         playerCurrentStamina = playerMaxStamina;
+
+        SpawnChosenCharacter();
     }
 
     private void Update() {
@@ -106,5 +111,27 @@ public class GameManager : MonoBehaviour
             pauseMenu.SetActive(!isPauseMenuOpen);
             isPaused = !isPauseMenuOpen;
         }
+    }
+
+    public void SpawnChosenCharacter() {
+        GameObject character = null;
+
+        switch (CharacterSelector.playerCharacterSelected) {
+            case "pistol":
+                character = playerCharacters[0];
+                break;
+            case "rifle":
+                character = playerCharacters[1];
+                break;
+            default:
+                character = playerCharacters[0];
+                print("Error. Character selected is invalid.");
+                break;
+        }
+
+        character.SetActive(true);
+        player = character;
+        // playerMaxHealth = player.GetComponent<HealthComponent>().maxHealth;
+        // playerCurrentHealth = player.GetComponent<HealthComponent>().currentHealth;
     }
 }

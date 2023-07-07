@@ -14,7 +14,7 @@ public class EnemyCollision : MonoBehaviour
 
     void Start() {
         animator = GetComponent<Animator>();
-        player = GameObject.Find("Player");
+        player = GameManager.Instance.player;
     }
 
     void OnCollisionEnter(Collision collision) {

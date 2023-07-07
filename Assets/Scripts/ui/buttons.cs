@@ -19,7 +19,15 @@ public class Buttons : MonoBehaviour
         Application.Quit();
     }
 
-    public void OpenAndCloseOptionsMenu(){
-        optionsMenu.SetActive(!optionsMenu.activeSelf);
+    public void EnableAndDisableGameObject(GameObject obj){
+        obj.SetActive(!obj.activeSelf);
     }
+
+    // public void OpenAndCloseCharacterSelectMenu() {
+    //     characterSelectMenu.SetActive(!characterSelectMenu.activeSelf);
+    // }
+
+    // public void OpenAndCloseUpgradeSelectMenu() {
+    //     upgradeSelectMenu.SetActive(!upgradeSelectMenu.activeSelf);
+    // }
 }
