@@ -8,8 +8,9 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
 
-    [SerializeField]private AudioMixerGroup musicVolumeSlider;
-    [SerializeField]private AudioMixerGroup SFXVolumeSlider;
+    [SerializeField]private AudioMixerGroup masterVolumeMixer;
+    [SerializeField]private AudioMixerGroup musicVolumeMixer;
+    [SerializeField]private AudioMixerGroup SFXVolumeMixer;
     [SerializeField]private Sound[] sounds;
 
     private void Awake() {
@@ -24,10 +25,10 @@ public class AudioManager : MonoBehaviour
 
             switch (s.audioType) {
                 case Sound.AudioType.music:
-                    s.audioSource.outputAudioMixerGroup = musicVolumeSlider;
+                    s.audioSource.outputAudioMixerGroup = musicVolumeMixer;
                     break;
-                case Sound.AudioType.sfx:
-                    s.audioSource.outputAudioMixerGroup = SFXVolumeSlider;
+                case Sound.AudioType.SFX:
+                    s.audioSource.outputAudioMixerGroup = SFXVolumeMixer;
                     break;
                 default:
                     break;             
@@ -57,6 +58,12 @@ public class AudioManager : MonoBehaviour
         }
 
         s.audioSource.Stop();
+    }
+
+    public void UpdateAudioMixer() {
+        masterVolumeMixer.audioMixer.SetFloat("Master", Mathf.Log10(AudioOptionsManager.masterVolume) * 20);
+        musicVolumeMixer.audioMixer.SetFloat("Music", Mathf.Log10(AudioOptionsManager.musicVolume) * 20);
+        SFXVolumeMixer.audioMixer.SetFloat("SFX", Mathf.Log10(AudioOptionsManager.SFXVolume) * 20);
     }
 
 }
