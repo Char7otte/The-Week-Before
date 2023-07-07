@@ -5,7 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class Sound
 {
-    public enum AudioType {music, sfx}
+    public enum AudioType {music, SFX}
     public AudioType audioType;
 
     [HideInInspector]public AudioSource audioSource;
