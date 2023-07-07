@@ -6,8 +6,8 @@ using TMPro;
 public class GunController : MonoBehaviour
 {
     [Header("GunStats")]
-    public int damage = 2;
-    public int maxMagazineSize = 30;
+    public float damage = 2; 
+    public int maxMagazineSize = 30; 
     [SerializeField]private float timeBetweenShots = 0.1f; //Fire rate
     private float reloadSpeed;
 
@@ -47,6 +47,7 @@ public class GunController : MonoBehaviour
             Reload();
         
         if (readyToShoot && shooting && !reloading && remainingBulletsInMagazine > 0) {
+            if (GameManager.Instance.isPaused) return;
             Shoot();
         }
     }

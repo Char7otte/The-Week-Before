@@ -60,6 +60,16 @@ public class AudioManager : MonoBehaviour
         s.audioSource.Stop();
     }
 
+    public void Pause(string clipname) {
+        Sound s = Array.Find(sounds, dummy_sound => dummy_sound.clipName == clipname);
+        if  (s == null) {
+            print(clipname + " does not exist.");
+            return;
+        }
+
+        s.audioSource.Pause();
+    }
+
     public void UpdateAudioMixer() {
         masterVolumeMixer.audioMixer.SetFloat("Master", Mathf.Log10(AudioOptionsManager.masterVolume) * 20);
         musicVolumeMixer.audioMixer.SetFloat("Music", Mathf.Log10(AudioOptionsManager.musicVolume) * 20);
