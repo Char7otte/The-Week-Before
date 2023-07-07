@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
 
     [Header("PlayerValues")]
     public float playerMaxHealth = 20;
-    [HideInInspector]public float playerCurrentHealth;
+    public float playerCurrentHealth;
     [HideInInspector]public bool isPlayerDead = false;
     public float playerMaxStamina = 100;
     [HideInInspector]public float playerCurrentStamina;
@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour
     [Header("Menus")]
     public GameObject gameOverScreen;
     public GameObject pauseMenu;
+    public bool isPaused;
 
     private void Awake() {
         if (Instance != null && Instance != this) Destroy(this);
@@ -58,11 +59,15 @@ public class GameManager : MonoBehaviour
         if (playerCurrentHealth == 0) PlayerHasDied();
     }
 
+    public void HealPlayer(float healAmount) {
+        AudioManager.Instance.Play("player_heal");
+        playerCurrentHealth += healAmount;
+        playerCurrentHealth = Mathf.Min(playerCurrentHealth, playerMaxHealth);
+    }
+
     public void PlayerHasDied() {
         isPlayerDead = true;
-        //audioSource.PlayOneShot(PlayerDeadSFX);
         AudioManager.Instance.Play("player_died");
-        //BGM.SetActive(false);
         AudioManager.Instance.Stop("BGM");
     }
 
@@ -96,7 +101,10 @@ public class GameManager : MonoBehaviour
 
     public void PauseMenuHandler() {
         if (Input.GetKeyDown(KeyCode.Escape)) {
-            pauseMenu.SetActive(!pauseMenu.activeSelf);
+            var isPauseMenuOpen = pauseMenu.activeSelf;
+
+            pauseMenu.SetActive(!isPauseMenuOpen);
+            isPaused = !isPauseMenuOpen;
         }
     }
 }

@@ -12,7 +12,7 @@ public class HealthComponent : MonoBehaviour
         currentHealth = maxHealth;
     }
 
-    public void DealDamage(int damageDealt) {
+    public void DealDamage(float damageDealt) {
         currentHealth -= damageDealt;
         currentHealth = Mathf.Max(currentHealth, 0.0f);
     }
