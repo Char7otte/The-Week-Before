@@ -18,11 +18,11 @@ public class PlayerMovementController : MonoBehaviour
     private Animator animator;
 
     [Header("StaminaSystem")]
-    [SerializeField]private float staminaDrainSpeed = 2f;
-    [SerializeField]private float staminaRegenerateSpeed = 1f;
-    [SerializeField]private float timeBeforeStaminaRegenerates = 3;
-    [SerializeField]float timer;
-    [SerializeField]private float sprintSpeedMultiplier = 1.2f;
+    private float staminaDrainSpeed = 20f;
+    private float staminaRegenerateSpeed = 5f;
+    private float timeBeforeStaminaRegenerates = 3;
+    private float sprintSpeedMultiplier = 1.2f;
+    private float timer;
     
 
     private void Start() {
@@ -32,6 +32,10 @@ public class PlayerMovementController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
 
         animator = GetComponent<Animator>();
+
+        var staminaComponent = GetComponent<StaminaComponent>();
+        staminaDrainSpeed = staminaComponent.staminaDrainSpeed;
+        staminaRegenerateSpeed = staminaComponent.staminaRegenerateSpeed;
     }
 
 

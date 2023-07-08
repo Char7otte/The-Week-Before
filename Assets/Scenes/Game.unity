@@ -1329,6 +1329,36 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5637011913040098405, guid: b41da842d5a65e242a18a8561a69e3ef, type: 3}
   m_PrefabInstance: {fileID: 5892935452338547499}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &325605640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 325605627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6a0b5c66029d6744b86070c64810361, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 20
+  currentHealth: 0
+--- !u!114 &325605641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 325605627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20efa10629536454a8a349a1107a948a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxStamina: 100
+  currentStamina: 0
+  staminaDrainSpeed: 30
+  staminaRegenerateSpeed: 7
 --- !u!1 &346016279
 GameObject:
   m_ObjectHideFlags: 0
@@ -6750,6 +6780,36 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1605502896191537834, guid: 9bce86bdbcbfafd448f48654d6a34162, type: 3}
   m_PrefabInstance: {fileID: 7046302405914329226}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4223434606153592319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4223434606153592310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6a0b5c66029d6744b86070c64810361, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 30
+  currentHealth: 0
+--- !u!114 &4223434606153592320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4223434606153592310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20efa10629536454a8a349a1107a948a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxStamina: 120
+  currentStamina: 0
+  staminaDrainSpeed: 30
+  staminaRegenerateSpeed: 5
 --- !u!1001 &5892935452338547499
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6822,10 +6882,24 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8482296385939037090, guid: b41da842d5a65e242a18a8561a69e3ef, type: 3}
+      propertyPath: staminaDrainSpeed
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 8482296385939037090, guid: b41da842d5a65e242a18a8561a69e3ef, type: 3}
+      propertyPath: staminaRegenerateSpeed
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6969549524084605689, guid: b41da842d5a65e242a18a8561a69e3ef, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 325605640}
+    - targetCorrespondingSourceObject: {fileID: 6969549524084605689, guid: b41da842d5a65e242a18a8561a69e3ef, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 325605641}
   m_SourcePrefab: {fileID: 100100000, guid: b41da842d5a65e242a18a8561a69e3ef, type: 3}
 --- !u!1 &6315232501787859883
 GameObject:
@@ -7050,7 +7124,7 @@ PrefabInstance:
       objectReference: {fileID: 887672889}
     - target: {fileID: 1383460789119227168, guid: 9bce86bdbcbfafd448f48654d6a34162, type: 3}
       propertyPath: maxMagazineSize
-      value: 10
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 1383460789119227168, guid: 9bce86bdbcbfafd448f48654d6a34162, type: 3}
       propertyPath: bulletSpawnPoint
@@ -7124,6 +7198,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3386671686619987004, guid: 9bce86bdbcbfafd448f48654d6a34162, type: 3}
+      propertyPath: staminaDrainSpeed
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 3386671686619987004, guid: 9bce86bdbcbfafd448f48654d6a34162, type: 3}
+      propertyPath: staminaRegenerateSpeed
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 5706703488297269491, guid: 9bce86bdbcbfafd448f48654d6a34162, type: 3}
       propertyPath: m_Camera
       value: 
@@ -7135,5 +7217,11 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1854809418333172136, guid: 9bce86bdbcbfafd448f48654d6a34162, type: 3}
       insertIndex: -1
       addedObject: {fileID: 529404806032207980}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1605502896191537834, guid: 9bce86bdbcbfafd448f48654d6a34162, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4223434606153592319}
+    - targetCorrespondingSourceObject: {fileID: 1605502896191537834, guid: 9bce86bdbcbfafd448f48654d6a34162, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4223434606153592320}
   m_SourcePrefab: {fileID: 100100000, guid: 9bce86bdbcbfafd448f48654d6a34162, type: 3}
