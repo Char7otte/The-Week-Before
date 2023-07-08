@@ -11,7 +11,7 @@ public class GameOverScreen : MonoBehaviour
     private void OnEnable() {
         Time.timeScale = 0.0f;
 
-        if (!GameManager.Instance.isPlayerDead) ChangeTextColorToGreen();
+        if (!GameManager.Instance.playerIsDead) ChangeTextColorToGreen();
         UpdateUIText();
     }
 
@@ -28,7 +28,7 @@ public class GameOverScreen : MonoBehaviour
     }
 
     private void UpdateUIText() {
-        timerText.SetText(GameManager.Instance.minutesElapsed.ToString("00") + " : " + GameManager.Instance.timeElapsed.ToString("00"));
-        killCounterText.SetText(GameManager.Instance.enemyKillCount.ToString());
+        timerText.SetText(GameManager.Instance.minutesElapsed.ToString("00") + " : " + GameManager.Instance.secondsElapsed.ToString("00"));
+        killCounterText.SetText(GameManager.Instance.killCount.ToString());
     }
 }

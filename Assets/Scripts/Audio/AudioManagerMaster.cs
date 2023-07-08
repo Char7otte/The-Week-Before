@@ -4,13 +4,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
-public class AudioManager : MonoBehaviour
+public class AudioManagerMaster : MonoBehaviour
 {
-    public static AudioManager Instance;
+    public static AudioManagerMaster Instance;
 
-    [SerializeField]private AudioMixerGroup masterVolumeMixer;
-    [SerializeField]private AudioMixerGroup musicVolumeMixer;
-    [SerializeField]private AudioMixerGroup SFXVolumeMixer;
+    public AudioMixerGroup masterVolumeMixer;
+    public AudioMixerGroup musicVolumeMixer;
+    public AudioMixerGroup SFXVolumeMixer;
     [SerializeField]private Sound[] sounds;
 
     private void Awake() {

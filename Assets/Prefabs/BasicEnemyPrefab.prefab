@@ -381,7 +381,9 @@ GameObject:
   - component: {fileID: 1091261361191970723}
   - component: {fileID: 1091261361191970722}
   - component: {fileID: 1091261361191970721}
-  - component: {fileID: 1091261361191970719}
+  - component: {fileID: 6123493055292259617}
+  - component: {fileID: 6850073889094072538}
+  - component: {fileID: 2757769580061605072}
   m_Layer: 0
   m_Name: BasicEnemyPrefab
   m_TagString: Enemy
@@ -502,7 +504,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 10
   currentHealth: 0
---- !u!114 &1091261361191970719
+--- !u!114 &6123493055292259617
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -511,11 +513,38 @@ MonoBehaviour:
   m_GameObject: {fileID: 1091261361191970727}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: efc33e4d68f503541bc7b7b543956e4c, type: 3}
+  m_Script: {fileID: 11500000, guid: 650a9edb0954c094b8e92a3dfc4a8026, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  medkitPrefab: {fileID: 2700060839685301186, guid: e42f86feb73a59f4b8a067242456f367, type: 3}
-  medkitDropChance: 5
+  isAlive: 1
+  componentsToDisable:
+  - {fileID: 1091261361191970717}
+  - {fileID: 1091261361191970722}
+--- !u!114 &6850073889094072538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1091261361191970727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42517f41ab27a5444b6e5d8e5fe5b1c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
+--- !u!114 &2757769580061605072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1091261361191970727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b21f4657e3b93a4d80fe93a947a3910, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1091261361224327587
 GameObject:
   m_ObjectHideFlags: 0
