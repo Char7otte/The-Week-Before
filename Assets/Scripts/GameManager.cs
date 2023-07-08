@@ -43,9 +43,6 @@ public class GameManager : MonoBehaviour
     }
 
     private void Start() {
-        playerCurrentHealth = playerMaxHealth;
-        playerCurrentStamina = playerMaxStamina;
-
         SpawnChosenCharacter();
     }
 
@@ -131,7 +128,9 @@ public class GameManager : MonoBehaviour
 
         character.SetActive(true);
         player = character;
-        // playerMaxHealth = player.GetComponent<HealthComponent>().maxHealth;
-        // playerCurrentHealth = player.GetComponent<HealthComponent>().currentHealth;
+        playerMaxHealth = player.GetComponent<HealthComponent>().maxHealth;
+        playerCurrentHealth = player.GetComponent<HealthComponent>().currentHealth;
+        playerMaxStamina = player.GetComponent<StaminaComponent>().maxStamina;
+        playerCurrentStamina = player.GetComponent<StaminaComponent>().currentStamina;
     }
 }
