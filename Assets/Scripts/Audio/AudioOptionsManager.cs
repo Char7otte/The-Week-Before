@@ -18,28 +18,28 @@ public class AudioOptionsManager : MonoBehaviour
     [SerializeField]private Slider SFXSlider;
 
     public void Start() {
-        LoadVolumeSliderOptionsFromSaveData();
+        //LoadVolumeSliderOptionsFromSaveData();
     }
 
     public void OnMasterSliderValueChange() {
         masterVolume = masterSlider.value;
         masterSliderPercentageText.text = ((int)(masterVolume*100)).ToString() +  "%";
         AudioManagerMaster.Instance.UpdateAudioMixer();
-        SaveVolumeSliderOptionsToSaveData();
+        //SaveVolumeSliderOptionsToSaveData();
     }
 
     public void OnMusicSliderValueChange() {
         musicVolume = musicSlider.value;
         musicSliderPercentageText.text = ((int)(musicVolume*100)).ToString() + "%";
         AudioManagerMaster.Instance.UpdateAudioMixer();
-        SaveVolumeSliderOptionsToSaveData();
+        //SaveVolumeSliderOptionsToSaveData();
     }
 
     public void OnSFXSliderValueChange() {
         SFXVolume = SFXSlider.value;
         SFXSliderPercentageText.text = ((int)(SFXVolume*100)).ToString() + "%";
         AudioManagerMaster.Instance.UpdateAudioMixer();
-        SaveVolumeSliderOptionsToSaveData();
+        //SaveVolumeSliderOptionsToSaveData();
     }
 
     public void LoadVolumeSliderOptionsFromSaveData() {

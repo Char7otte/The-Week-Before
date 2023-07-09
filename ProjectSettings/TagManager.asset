@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - Medkit
   - MedkitAura
+  - Point
   layers:
   - Default
   - TransparentFX

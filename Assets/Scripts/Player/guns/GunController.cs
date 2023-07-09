@@ -10,13 +10,13 @@ public class GunController : MonoBehaviour
     /// </summary>
 
     [Header("Stats")]
-    public int damage = 1;
+    public float damage = 1.0f;
     public int maxMagazineSize = 30; 
     [SerializeField]private float timeBetweenShots = 0.1f; //Fire rate
     private float reloadSpeed;
 
     [Header("GunStates")]
-    private int remainingBulletsInMagazine;
+    [HideInInspector]public int remainingBulletsInMagazine;
     private int amountOfBulletsShot;
     private bool shooting = false;
     private bool readyToShoot = true;
@@ -35,6 +35,9 @@ public class GunController : MonoBehaviour
     private void Start() {   
         animator = GetComponent<Animator>();
         audioManagerComponent = GetComponent<AudioManagerComponent>();
+
+        damage = damage + (damage * 0.2f * SaveDataManager.damageUpgradeCount); //I hate math.
+        maxMagazineSize += SaveDataManager.magazineUpgradeCount;
 
         remainingBulletsInMagazine = maxMagazineSize;
     }

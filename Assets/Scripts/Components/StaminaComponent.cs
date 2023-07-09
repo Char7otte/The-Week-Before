@@ -10,4 +10,8 @@ public class StaminaComponent : MonoBehaviour
     public float staminaRegenerateSpeed = 5f;
     public float timeBeforeStaminaRegenerates = 3;
     public float sprintSpeedMultiplier = 1.2f;
+
+    private void Start() {
+        currentStamina = maxStamina;
+    }
 }

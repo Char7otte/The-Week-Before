@@ -384,6 +384,7 @@ GameObject:
   - component: {fileID: 6123493055292259617}
   - component: {fileID: 6850073889094072538}
   - component: {fileID: 2757769580061605072}
+  - component: {fileID: 8866598590912330559}
   m_Layer: 0
   m_Name: BasicEnemyPrefab
   m_TagString: Enemy
@@ -518,7 +519,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isAlive: 1
   componentsToDisable:
-  - {fileID: 1091261361191970717}
   - {fileID: 1091261361191970722}
 --- !u!114 &6850073889094072538
 MonoBehaviour:
@@ -545,6 +545,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b21f4657e3b93a4d80fe93a947a3910, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8866598590912330559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1091261361191970727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3335a3618da44714a8598ba35b540c0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  medkitPrefab: {fileID: 2700060839685301186, guid: e42f86feb73a59f4b8a067242456f367, type: 3}
+  medkitPrefabDropChance: 5
+  pointsPrefab: {fileID: 7526782911327506020, guid: 4b3023d7a2215ee4fbd167c8f0b8f74e, type: 3}
 --- !u!1 &1091261361224327587
 GameObject:
   m_ObjectHideFlags: 0

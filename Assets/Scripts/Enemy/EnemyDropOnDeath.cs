@@ -9,10 +9,19 @@ public class EnemyAdditionalDeathComponent : MonoBehaviour
 
     [SerializeField]private GameObject pointsPrefab;
 
-    public void CallUponDeath() {
-        var randomInt = Random.Range(0, 100);
-        if (randomInt < medkitPrefabDropChance) Instantiate(medkitPrefab, transform.position, Quaternion.identity);
+    private HealthComponent healthComponent;
+    private bool called;
 
-        Instantiate(pointsPrefab, transform.position, Quaternion.identity);
+    private void Start() {
+        healthComponent = GetComponent<HealthComponent>();
+    }
+
+    private void Update() {
+        if (healthComponent.currentHealth <= 0 && !called) {
+            called = true;
+            var randomInt = Random.Range(0, 100);
+            if (randomInt < medkitPrefabDropChance) Instantiate(medkitPrefab, transform.position, Quaternion.identity);
+            else Instantiate(pointsPrefab, transform.position, Quaternion.identity);
+        }
     }
 }

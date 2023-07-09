@@ -18,16 +18,16 @@ public class GameManager : MonoBehaviour
 
     [Header("UI")]
     [SerializeField]private GameObject gameOverScreen;
-    public bool playerIsDead = false;
+    [HideInInspector]public bool playerIsDead = false;
     [SerializeField]private GameObject pauseScreen;
-    public bool isPaused;
+    [HideInInspector]public bool isPaused;
     [SerializeField]private GameObject optionsMenu;
 
     [Header("Trackers")]
-    public int killCount;
     public int minutesToSurviveToWin = 5;
     [HideInInspector]public float secondsElapsed;
     [HideInInspector]public int minutesElapsed;
+    [HideInInspector]public int killCount;
 
     [Header("DifficultyScaling")]
     public float enemyTimeToSpawn = 3;
@@ -64,28 +64,26 @@ public class GameManager : MonoBehaviour
     }
 
     public void AssignChosenCharacter() {
-        GameObject character = null;
-
         switch (CharacterSelector.playerCharacterSelected) {
             case "pistol":
-                character = playerCharacters[0];
+                player = playerCharacters[0];
                 break;
             case "rifle":
-                character = playerCharacters[1];
+                player = playerCharacters[1];
                 break;
             default:
-                character = playerCharacters[0];
+                player = playerCharacters[0];
                 print("Error. Character selected is invalid, defaulting.");
                 break;
         }
 
-        character.SetActive(true);
-        player = character;
+        player.SetActive(true);
     }
 
     public void GameOver() {
-        killCount--; //DeathComponent will add the player's death, so it has to be subtracted here.
+        SaveDataManager.Instance.SaveDataInt("Points", SaveDataManager.pointsCollected);
 
+        killCount--; //DeathComponent will add the player's death, so it has to be subtracted here.
         AudioManagerMaster.Instance.Stop("BGM");
         Invoke("OpenGameOverScreen", playerAnimator.GetCurrentAnimatorStateInfo(0).length * 2);
     }
@@ -104,14 +102,14 @@ public class GameManager : MonoBehaviour
             GameOver();
         }
 
-        // difficultyScaleTimer += Time.deltaTime;
-        // if (difficultyScaleTimer >= difficultyScalingIntervalInSeconds) {
-        //     ScaleDifficultyUp();
-        //     difficultyScaleTimer = 0.0f;
-        // }
+        difficultyScaleTimer += Time.deltaTime;
+        if (difficultyScaleTimer >= difficultyScalingIntervalInSeconds) {
+            //ScaleDifficultyUp();
+            difficultyScaleTimer = 0.0f;
+        }
     }
 
-    // public void ScaleDifficultyUp() {
+    //public void ScaleDifficultyUp() {
     //     enemyDamage *= difficultyScale;
     //     enemyTimeToSpawn /= difficultyScale;
     // }

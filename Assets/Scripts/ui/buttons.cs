@@ -5,8 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class Buttons : MonoBehaviour
 {
-    [SerializeField]private GameObject optionsMenu;
-
     public void StartGame() {
         SceneManager.LoadScene("Game");
     }
@@ -22,12 +20,4 @@ public class Buttons : MonoBehaviour
     public void EnableAndDisableGameObject(GameObject obj){
         obj.SetActive(!obj.activeSelf);
     }
-
-    // public void OpenAndCloseCharacterSelectMenu() {
-    //     characterSelectMenu.SetActive(!characterSelectMenu.activeSelf);
-    // }
-
-    // public void OpenAndCloseUpgradeSelectMenu() {
-    //     upgradeSelectMenu.SetActive(!upgradeSelectMenu.activeSelf);
-    // }
 }

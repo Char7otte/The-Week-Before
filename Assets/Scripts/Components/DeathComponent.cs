@@ -6,7 +6,7 @@ public class DeathComponent : MonoBehaviour
 {
     public bool isAlive = true;
 
-    [SerializeField]private Component[] componentsToDisable;
+    [SerializeField]private Behaviour[] componentsToDisable;
 
     private HealthComponent healthComponent;
     private AudioManagerComponent audioManagerComponent;
@@ -37,8 +37,9 @@ public class DeathComponent : MonoBehaviour
     }
 
     private void DisableTheseComponentsUponDeath() {
-        foreach(Component component in componentsToDisable) {
-            Behaviour behaviour = (Behaviour)(component);
+        GetComponent<Collider>().enabled = false; //Colliders can be enabled & disabled, but they don't inherit from Behaviour. WHY????????
+
+        foreach(Behaviour behaviour in componentsToDisable) {
             behaviour.enabled = false;
         }
     }

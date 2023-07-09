@@ -46,6 +46,8 @@ public class PlayerMovementController : MonoBehaviour
         staminaRegenerateSpeed = staminaComponent.staminaRegenerateSpeed;
         timeBeforeStaminaRegenerates = staminaComponent.timeBeforeStaminaRegenerates;
         sprintSpeedMultiplier = staminaComponent.sprintSpeedMultiplier;
+
+        movementSpeed = movementSpeed + (movementSpeed * 0.1f * SaveDataManager.speedUpgradeCount);
     }
 
 

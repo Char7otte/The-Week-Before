@@ -40,5 +40,9 @@ public class ActiveGameUI : MonoBehaviour
         var maxStamina = playerMovementController.maxStamina;
         staminaText.SetText("Stamina:" + currentStamina.ToString("0"));
         staminabarImage.fillAmount = currentStamina / maxStamina;
+
+        var currentAmmo = gunController.remainingBulletsInMagazine;
+        var maxAmmo = gunController.maxMagazineSize;
+        ammoText.SetText(currentAmmo.ToString("00") + " / " + maxAmmo.ToString());
     }
 }
