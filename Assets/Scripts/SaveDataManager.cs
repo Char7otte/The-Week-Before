@@ -18,21 +18,21 @@ public class SaveDataManager : MonoBehaviour
     }
 
     private void Start() {
-        LoadDataInt("Points", pointsCollected);
-        LoadDataInt("DamageUpgradeCount", damageUpgradeCount);
-        LoadDataInt("MagazineUpgradeCount", magazineUpgradeCount);
-        LoadDataInt("SpeedUpgradeCount", speedUpgradeCount);
+        LoadAllData();
     }
 
     public void SaveDataInt(string dataName, int value) {
         PlayerPrefs.SetInt(dataName, value);
     }
 
-    public void LoadDataInt(string dataName, int value) {
-        if (!PlayerPrefs.HasKey(dataName)) {
-            print("Error, no " + dataName + " saved.");
-            return;
-        }
-        value = PlayerPrefs.GetInt(dataName);
+    public int LoadDataInt(string dataName) {
+        return PlayerPrefs.GetInt(dataName, 0);
+    }
+
+    public void LoadAllData() {
+        pointsCollected = LoadDataInt("Points");
+        damageUpgradeCount = LoadDataInt("DamageUpgradeCount");
+        magazineUpgradeCount = LoadDataInt("MagazineUpgradeCount");
+        speedUpgradeCount = LoadDataInt("SpeedUpgradeCount"); 
     }
 }
