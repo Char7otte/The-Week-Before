@@ -50,12 +50,10 @@ public class PlayerMovementController : MonoBehaviour
         movementSpeed = movementSpeed + (movementSpeed * 0.1f * SaveDataManager.speedUpgradeCount);
     }
 
-
     private void Update() {
         movementVector = playerActionMoving.ReadValue<Vector3>();
         animator.SetBool("is_moving", movementVector.magnitude > 0);
     }
-
 
     private void FixedUpdate() {
         if (Input.GetKey(KeyCode.LeftShift) && currentStamina > 0) 
