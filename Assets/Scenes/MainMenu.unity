@@ -1660,7 +1660,6 @@ GameObject:
   - component: {fileID: 725544809}
   - component: {fileID: 725544812}
   - component: {fileID: 725544811}
-  - component: {fileID: 725544810}
   - component: {fileID: 725544813}
   m_Layer: 5
   m_Name: CharacterSelectScreen
@@ -1693,18 +1692,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &725544810
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 725544808}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b13c42703fc2444696511c047b43b3a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &725544811
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5425,8 +5412,6 @@ GameObject:
   - component: {fileID: 1936779410}
   - component: {fileID: 1936779414}
   - component: {fileID: 1936779413}
-  - component: {fileID: 1936779412}
-  - component: {fileID: 1936779411}
   m_Layer: 5
   m_Name: UpgradeScreen
   m_TagString: Untagged
@@ -5461,30 +5446,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1936779411
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1936779409}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21c59254b5a59414ba39961f9df13df5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1936779412
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1936779409}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b13c42703fc2444696511c047b43b3a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1936779413
 MonoBehaviour:
   m_ObjectHideFlags: 0
