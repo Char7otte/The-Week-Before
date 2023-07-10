@@ -559,7 +559,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   medkitPrefab: {fileID: 2700060839685301186, guid: e42f86feb73a59f4b8a067242456f367, type: 3}
   medkitPrefabDropChance: 5
-  pointsPrefab: {fileID: 7526782911327506020, guid: 4b3023d7a2215ee4fbd167c8f0b8f74e, type: 3}
+  pointsPrefab: {fileID: 5017114196763338582, guid: 80674305c03e81d4eb816c129bca117c, type: 3}
 --- !u!1 &1091261361224327587
 GameObject:
   m_ObjectHideFlags: 0

@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
     public int minutesToSurviveToWin = 5;
     [HideInInspector]public float secondsElapsed;
     [HideInInspector]public int minutesElapsed;
-    [HideInInspector]public int killCount;
+    public int killCount;
 
     [Header("DifficultyScaling")]
     public float enemyTimeToSpawn = 3;
@@ -35,12 +35,14 @@ public class GameManager : MonoBehaviour
     public float difficultyScale = 1.1f;
     [HideInInspector]public float difficultyScaleTimer;
 
+    public int points;
+
     private void Awake() {
         if (Instance != null && Instance != this) Destroy(this);
         else Instance = this;
     }
 
-    private void Start() {
+    private void OnLevelWasLoaded() {
         AssignChosenCharacter();
 
         playerHealthComponent = player.GetComponent<HealthComponent>();
@@ -61,6 +63,8 @@ public class GameManager : MonoBehaviour
             isPaused = pauseScreen.activeSelf;
             pauseScreen.SetActive(!isPaused);
         }
+
+        points = SaveDataManager.pointsCollected;
     }
 
     public void AssignChosenCharacter() {
@@ -83,12 +87,12 @@ public class GameManager : MonoBehaviour
     public void GameOver() {
         SaveDataManager.Instance.SaveDataInt("Points", SaveDataManager.pointsCollected);
 
-        killCount--; //DeathComponent will add the player's death, so it has to be subtracted here.
         AudioManagerMaster.Instance.Stop("BGM");
         Invoke("OpenGameOverScreen", playerAnimator.GetCurrentAnimatorStateInfo(0).length * 2);
     }
 
     private void OpenGameOverScreen() {
+        if (playerDeathComponent.isAlive == false) killCount--; //The player dying adds to killCount, so it must be subtracted.
         gameOverScreen.SetActive(true);
     }
 
