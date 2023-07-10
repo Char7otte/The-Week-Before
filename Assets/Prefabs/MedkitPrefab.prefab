@@ -68,8 +68,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b31dd4a78946dc4dae63b6e91925512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rotateSpeed: 40
   medkitLifetime: 15
-  medKitLifetimeWhenActivated: 7
   medkitAura: {fileID: 5354673911395310142}
 --- !u!1 &5354673911395310142
 GameObject:

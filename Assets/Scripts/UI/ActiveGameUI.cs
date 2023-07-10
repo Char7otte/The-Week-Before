@@ -6,24 +6,43 @@ using UnityEngine.UI;
 
 public class ActiveGameUI : MonoBehaviour
 {
-    [SerializeField]private TMP_Text timerText;
-    [SerializeField]private TMP_Text healthText;
+    [SerializeField]private TextMeshProUGUI timerText;
+
+    
     [SerializeField]private Image healthbarImage;
-    [SerializeField]private TMP_Text staminaText;
+    [SerializeField]private TextMeshProUGUI healthText;
+    private HealthComponent healthComponent;
+
     [SerializeField]private Image staminabarImage;
-    //[SerializeField]private TMP_Text ammoText; Managed by GunController
+    [SerializeField]private TextMeshProUGUI staminaText;
+    private PlayerMovementController playerMovementController; //Yes, there is a StaminaComponent script. Might update this & that in the future.
+
+    [SerializeField]private TextMeshProUGUI ammoText;
+    private GunController gunController;
+
+    private void Start() {
+        gunController = GameManager.Instance.player.GetComponent<GunController>();
+        healthComponent = GameManager.Instance.player.GetComponent<HealthComponent>();
+        playerMovementController = GameManager.Instance.player.GetComponent<PlayerMovementController>();
+    }
 
     private void Update() {
-        timerText.SetText(GameManager.Instance.minutesElapsed.ToString("00") + " : " + GameManager.Instance.timeElapsed.ToString("00"));
+        var minutesElapsed = GameManager.Instance.minutesElapsed;
+        var secondsElapsed = GameManager.Instance.secondsElapsed;
+        timerText.SetText(minutesElapsed.ToString("00" + " : " + secondsElapsed.ToString("00")));
 
-        float currentHealth = GameManager.Instance.playerCurrentHealth;
-        float maxHealth = GameManager.Instance.playerMaxHealth;
+        var currentHealth = healthComponent.currentHealth;
+        var maxHealth = healthComponent.maxHealth;
         healthText.SetText("Health: " + (currentHealth * 5).ToString("0"));
         healthbarImage.fillAmount = currentHealth / maxHealth;
 
-        float currentStamina = GameManager.Instance.playerCurrentStamina;
-        float maxStamina =GameManager.Instance.playerMaxStamina;
+        var currentStamina = playerMovementController.currentStamina;
+        var maxStamina = playerMovementController.maxStamina;
         staminaText.SetText("Stamina:" + currentStamina.ToString("0"));
         staminabarImage.fillAmount = currentStamina / maxStamina;
+
+        var currentAmmo = gunController.remainingBulletsInMagazine;
+        var maxAmmo = gunController.maxMagazineSize;
+        ammoText.SetText(currentAmmo.ToString("00") + " / " + maxAmmo.ToString());
     }
 }

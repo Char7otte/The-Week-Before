@@ -7,7 +7,8 @@ public class MedkitAura : MonoBehaviour
     [SerializeField]private float timeBetweenHeals;
     [SerializeField]private float healAmount;
     //[SerializeField]private float healRate;
-    float healTimer;
+
+    private float healTimer;
 
     private void Update() {
         healTimer += Time.deltaTime;
@@ -16,14 +17,10 @@ public class MedkitAura : MonoBehaviour
 
     private void OnTriggerStay(Collider other) {
         if (other.gameObject.tag == "Player") {
-            RegenerateHealth();
-        }
-    }
-
-    private void RegenerateHealth() {
-        if (healTimer >= timeBetweenHeals) {
-            healTimer = 0.0f;
-            GameManager.Instance.HealPlayer(healAmount);
+            if (healTimer >= timeBetweenHeals) {
+                healTimer = 0.0f;
+                other.gameObject.GetComponent<HealthComponent>().Heal(healAmount);
+            }
         }
     }
 }

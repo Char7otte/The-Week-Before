@@ -9,6 +9,7 @@ public class EnemySpawnController : MonoBehaviour
     [SerializeField]private Transform enemySpawnLocation;
     [SerializeField]private Transform enemiesGroup;
     [SerializeField]private GameObject basicEnemyPrefab;
+    [SerializeField]private LayerMask layerToHit;
 
     [Header("SpawnTimer")]
     private float timeToSpawn;
@@ -32,5 +33,16 @@ public class EnemySpawnController : MonoBehaviour
 
     private void SetSpawnLocation() {
         enemySpawnAnchor.rotation = Quaternion.Euler(0, Random.Range(0, 359), 0);
+
+        var AnchorPosition = enemySpawnAnchor.position;
+        var LocationPosition = enemySpawnLocation.position;
+        var direction = (AnchorPosition - LocationPosition).normalized;
+        var distance = Vector3.Distance(AnchorPosition, LocationPosition);
+        var ray = new Ray(AnchorPosition, direction);
+        
+        if (Physics.Raycast(ray, out RaycastHit hit, distance, layerToHit)) {
+            print(hit.collider.gameObject.name + "hit.");
+            enemySpawnAnchor.Rotate(Vector3.right, 90);
+        }
     }
 }

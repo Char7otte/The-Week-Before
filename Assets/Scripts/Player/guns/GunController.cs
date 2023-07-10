@@ -5,14 +5,18 @@ using TMPro;
 
 public class GunController : MonoBehaviour
 {
-    [Header("GunStats")]
-    public float damage = 2; 
+    /// <summary>
+    /// If it ain't broke, don't fix it.
+    /// </summary>
+
+    [Header("Stats")]
+    public float damage = 1.0f;
     public int maxMagazineSize = 30; 
     [SerializeField]private float timeBetweenShots = 0.1f; //Fire rate
     private float reloadSpeed;
 
     [Header("GunStates")]
-    private int remainingBulletsInMagazine;
+    [HideInInspector]public int remainingBulletsInMagazine;
     private int amountOfBulletsShot;
     private bool shooting = false;
     private bool readyToShoot = true;
@@ -26,17 +30,20 @@ public class GunController : MonoBehaviour
     [Header("ShootingAnimations")]
     private Animator animator;
 
-    [Header("HUD")]
-    [SerializeField]private TMP_Text ammoCountText;
+    private AudioManagerComponent audioManagerComponent;
 
-    private void Start() {
-        remainingBulletsInMagazine = maxMagazineSize;
+    private void Start() {   
         animator = GetComponent<Animator>();
+        audioManagerComponent = GetComponent<AudioManagerComponent>();
+
+        damage = damage + (damage * 0.2f * SaveDataManager.damageUpgradeCount); //I hate math.
+        maxMagazineSize += SaveDataManager.magazineUpgradeCount;
+
+        remainingBulletsInMagazine = maxMagazineSize;
     }
 
     private void Update() {
         KeyboardInput();
-        ammoCountText.SetText(remainingBulletsInMagazine + " / " + maxMagazineSize);
     }
 
     private void KeyboardInput() {
@@ -57,7 +64,7 @@ public class GunController : MonoBehaviour
         readyToShoot = false;
 
         Instantiate(bulletPrefab, bulletSpawnPoint.position, transform.rotation, bulletsGroup);
-        AudioManager.Instance.Play("rifle_shooting");
+        audioManagerComponent.Play("shooting");
 
         
         remainingBulletsInMagazine--;
@@ -73,7 +80,7 @@ public class GunController : MonoBehaviour
         animator.SetBool("is_empty", true);
         reloading = true;
 
-        AudioManager.Instance.Play("rifle_reloading");
+        audioManagerComponent.Play("reload");
 
         animator.SetTrigger("reload");
         Invoke("ReloadFinished", animator.GetCurrentAnimatorStateInfo(1).length * 2);

@@ -5,6 +5,10 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovementController : MonoBehaviour
 {
+    /// <summary>
+    /// If it ain't broke, don't fix it.
+    /// </summary>
+
     [Header("Inputs")]
     private PlayerInput playerInput;
     private InputAction playerActionMoving;
@@ -18,10 +22,12 @@ public class PlayerMovementController : MonoBehaviour
     private Animator animator;
 
     [Header("StaminaSystem")]
-    private float staminaDrainSpeed = 20f;
-    private float staminaRegenerateSpeed = 5f;
-    private float timeBeforeStaminaRegenerates = 3;
-    private float sprintSpeedMultiplier = 1.2f;
+    [HideInInspector]public float maxStamina;
+    [HideInInspector]public float currentStamina;
+    private float staminaDrainSpeed;
+    private float staminaRegenerateSpeed;
+    private float timeBeforeStaminaRegenerates;
+    private float sprintSpeedMultiplier;
     private float timer;
     
 
@@ -34,25 +40,29 @@ public class PlayerMovementController : MonoBehaviour
         animator = GetComponent<Animator>();
 
         var staminaComponent = GetComponent<StaminaComponent>();
+        maxStamina = staminaComponent.maxStamina;
+        currentStamina = staminaComponent.currentStamina;
         staminaDrainSpeed = staminaComponent.staminaDrainSpeed;
         staminaRegenerateSpeed = staminaComponent.staminaRegenerateSpeed;
-    }
+        timeBeforeStaminaRegenerates = staminaComponent.timeBeforeStaminaRegenerates;
+        sprintSpeedMultiplier = staminaComponent.sprintSpeedMultiplier;
 
+        movementSpeed = movementSpeed + (movementSpeed * 0.1f * SaveDataManager.speedUpgradeCount);
+    }
 
     private void Update() {
         movementVector = playerActionMoving.ReadValue<Vector3>();
         animator.SetBool("is_moving", movementVector.magnitude > 0);
     }
 
-
     private void FixedUpdate() {
-        if (Input.GetKey(KeyCode.LeftShift) && GameManager.Instance.playerCurrentStamina > 0) 
+        if (Input.GetKey(KeyCode.LeftShift) && currentStamina > 0) 
         {
             animator.SetBool("is_sprinting", true);
 
             rb.AddForce(movementVector.normalized * movementSpeed * sprintSpeedMultiplier * Time.deltaTime);
-            GameManager.Instance.playerCurrentStamina -= staminaDrainSpeed * Time.deltaTime;
-            GameManager.Instance.playerCurrentStamina = Mathf.Max(GameManager.Instance.playerCurrentStamina, 0.0f);
+            currentStamina -= staminaDrainSpeed * Time.deltaTime;
+            currentStamina = Mathf.Max(currentStamina, 0.0f);
             timer = 0.0f;
         }
         else
@@ -62,8 +72,8 @@ public class PlayerMovementController : MonoBehaviour
             rb.AddForce(movementVector.normalized * movementSpeed * Time.deltaTime);
 
             if (timer >= timeBeforeStaminaRegenerates) {
-                GameManager.Instance.playerCurrentStamina += staminaRegenerateSpeed * Time.deltaTime;
-                GameManager.Instance.playerCurrentStamina = Mathf.Min(GameManager.Instance.playerCurrentStamina, GameManager.Instance.playerMaxStamina);
+                currentStamina += staminaRegenerateSpeed * Time.deltaTime;
+                currentStamina = Mathf.Min(currentStamina, maxStamina);
             }
             else
                 timer += Time.deltaTime;

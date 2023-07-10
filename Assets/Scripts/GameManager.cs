@@ -7,35 +7,33 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    public GameObject player;
-
-    [Header("PlayerCharacterInitialization")]
     public GameObject[] playerCharacters;
 
-    [Header("PlayerValues")]
-    public float playerMaxHealth = 20;
-    public float playerCurrentHealth;
-    [HideInInspector]public bool isPlayerDead = false;
-    public float playerMaxStamina = 100;
-    [HideInInspector]public float playerCurrentStamina;
+    [Header("Player")]
+    [HideInInspector]public GameObject player;
+    private HealthComponent playerHealthComponent;
+    private DeathComponent playerDeathComponent;
+    private AudioManagerComponent playerAudioManagerComponent;
+    private Animator playerAnimator;
+
+    [Header("UI")]
+    [SerializeField]private GameObject gameOverScreen;
+    [HideInInspector]public bool playerIsDead = false;
+    [SerializeField]private GameObject pauseScreen;
+    [HideInInspector]public bool isPaused;
+    [SerializeField]private GameObject optionsMenu;
+
+    [Header("Trackers")]
+    public int minutesToSurviveToWin = 5;
+    [HideInInspector]public float secondsElapsed;
+    [HideInInspector]public int minutesElapsed;
+    [HideInInspector]public int killCount;
 
     [Header("DifficultyScaling")]
-    public float enemyDamage = 1;
     public float enemyTimeToSpawn = 3;
     public float difficultyScalingIntervalInSeconds = 5;
     public float difficultyScale = 1.1f;
     [HideInInspector]public float difficultyScaleTimer;
-
-    [Header("HUD")]
-    public int enemyKillCount;
-    public int minutesToSurviveToWin = 5;
-    [HideInInspector]public float timeElapsed;
-    [HideInInspector]public int minutesElapsed;
-
-    [Header("Menus")]
-    public GameObject gameOverScreen;
-    public GameObject pauseMenu;
-    public bool isPaused;
 
     private void Awake() {
         if (Instance != null && Instance != this) Destroy(this);
@@ -43,94 +41,76 @@ public class GameManager : MonoBehaviour
     }
 
     private void Start() {
-        SpawnChosenCharacter();
+        AssignChosenCharacter();
+
+        playerHealthComponent = player.GetComponent<HealthComponent>();
+        playerDeathComponent = player.GetComponent<DeathComponent>();
+        playerAudioManagerComponent = player.GetComponent<AudioManagerComponent>();
+        playerAnimator = player.GetComponent<Animator>();
     }
 
     private void Update() {
-        if (!isPlayerDead) Timer();
-        PauseMenuHandler();
+        if (playerDeathComponent.isAlive) {
+            RunTimer();
+        }
+        else {
+            GameOver();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape) && !optionsMenu.activeSelf) {
+            isPaused = pauseScreen.activeSelf;
+            pauseScreen.SetActive(!isPaused);
+        }
     }
 
-    public void PlayerTakesDamage() {
-        playerCurrentHealth -= enemyDamage;
-        playerCurrentHealth = Mathf.Max(playerCurrentHealth, 0);
+    public void AssignChosenCharacter() {
+        switch (CharacterSelector.playerCharacterSelected) {
+            case "pistol":
+                player = playerCharacters[0];
+                break;
+            case "rifle":
+                player = playerCharacters[1];
+                break;
+            default:
+                player = playerCharacters[0];
+                print("Error. Character selected is invalid, defaulting.");
+                break;
+        }
 
-        //audioSource.PlayOneShot(playerTakesDamageSFX);
-        AudioManager.Instance.Play("player_hurt");
-
-        if (playerCurrentHealth == 0) PlayerHasDied();
-    }
-
-    public void HealPlayer(float healAmount) {
-        AudioManager.Instance.Play("player_heal");
-        playerCurrentHealth += healAmount;
-        playerCurrentHealth = Mathf.Min(playerCurrentHealth, playerMaxHealth);
-    }
-
-    public void PlayerHasDied() {
-        isPlayerDead = true;
-        AudioManager.Instance.Play("player_died");
-        AudioManager.Instance.Stop("BGM");
+        player.SetActive(true);
     }
 
     public void GameOver() {
+        SaveDataManager.Instance.SaveDataInt("Points", SaveDataManager.pointsCollected);
+
+        killCount--; //DeathComponent will add the player's death, so it has to be subtracted here.
+        AudioManagerMaster.Instance.Stop("BGM");
+        Invoke("OpenGameOverScreen", playerAnimator.GetCurrentAnimatorStateInfo(0).length * 2);
+    }
+
+    private void OpenGameOverScreen() {
         gameOverScreen.SetActive(true);
     }
 
-    public void Timer() {
-        timeElapsed += Time.deltaTime;
-
-        difficultyScaleTimer += Time.deltaTime;
-        if (difficultyScaleTimer >= difficultyScalingIntervalInSeconds) {
-            ScaleDifficultyUp();
-            difficultyScaleTimer = 0.0f;
-        }
-
-        if (timeElapsed >= 60.0f) {
-            timeElapsed = 0.0f;
+    public void RunTimer() {
+        secondsElapsed += Time.deltaTime;
+        if (secondsElapsed >= 60.0f) {
+            secondsElapsed = 0.0f;
             minutesElapsed++;
         }
-
         if (minutesElapsed >= minutesToSurviveToWin) {
             GameOver();
         }
-    }
 
-    public void ScaleDifficultyUp() {
-        enemyDamage *= difficultyScale;
-        enemyTimeToSpawn /= difficultyScale;
-    }
-
-    public void PauseMenuHandler() {
-        if (Input.GetKeyDown(KeyCode.Escape)) {
-            var isPauseMenuOpen = pauseMenu.activeSelf;
-
-            pauseMenu.SetActive(!isPauseMenuOpen);
-            isPaused = !isPauseMenuOpen;
+        difficultyScaleTimer += Time.deltaTime;
+        if (difficultyScaleTimer >= difficultyScalingIntervalInSeconds) {
+            //ScaleDifficultyUp();
+            difficultyScaleTimer = 0.0f;
         }
     }
 
-    public void SpawnChosenCharacter() {
-        GameObject character = null;
-
-        switch (CharacterSelector.playerCharacterSelected) {
-            case "pistol":
-                character = playerCharacters[0];
-                break;
-            case "rifle":
-                character = playerCharacters[1];
-                break;
-            default:
-                character = playerCharacters[0];
-                print("Error. Character selected is invalid.");
-                break;
-        }
-
-        character.SetActive(true);
-        player = character;
-        playerMaxHealth = player.GetComponent<HealthComponent>().maxHealth;
-        playerCurrentHealth = player.GetComponent<HealthComponent>().currentHealth;
-        playerMaxStamina = player.GetComponent<StaminaComponent>().maxStamina;
-        playerCurrentStamina = player.GetComponent<StaminaComponent>().currentStamina;
-    }
+    //public void ScaleDifficultyUp() {
+    //     enemyDamage *= difficultyScale;
+    //     enemyTimeToSpawn /= difficultyScale;
+    // }
 }
