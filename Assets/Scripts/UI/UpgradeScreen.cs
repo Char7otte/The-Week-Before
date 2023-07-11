@@ -6,18 +6,22 @@ using UnityEngine.UI;
 
 public class UpgradeScreen : MonoBehaviour
 {
+    [Header("Points")]
     [SerializeField]private TextMeshProUGUI pointsText;
 
+    [Header("DamageUpgrade")]
     [SerializeField]private Button damageUpgradeButton;
     [SerializeField]private int damageUpgradeCost;
     [SerializeField]private TextMeshProUGUI damageUpgradeCostText;
     [SerializeField]private TextMeshProUGUI damageUpgradeCountText;
 
+    [Header("MagazineUpgrade")]
     [SerializeField]private Button magazineUpgradeButton;
     [SerializeField]private int magazineUpgradeCost;
     [SerializeField]private TextMeshProUGUI magazineUpgradeCostText;
     [SerializeField]private TextMeshProUGUI magazineUpgradeCountText;
 
+    [Header("SpeedUpgrade")]
     [SerializeField]private Button speedUpgradeButton;
     [SerializeField]private int speedUpgradeCost;
     [SerializeField]private TextMeshProUGUI speedUpgradeCostText;
@@ -27,15 +31,19 @@ public class UpgradeScreen : MonoBehaviour
         var points = SaveDataManager.pointsCollected;
         pointsText.SetText("Points Collected: " + points);
 
-        if (SaveDataManager.pointsCollected < damageUpgradeCost) {
-            damageUpgradeButton.interactable = false;
-        }
-        if (SaveDataManager.pointsCollected < magazineUpgradeCost) {
-            magazineUpgradeButton.interactable = false;
-        }
-        if (SaveDataManager.pointsCollected < speedUpgradeCost) {
-            speedUpgradeButton.interactable = false;
-        }
+        damageUpgradeButton.interactable = SaveDataManager.pointsCollected > damageUpgradeCost;
+        magazineUpgradeButton.interactable = SaveDataManager.pointsCollected > magazineUpgradeCost;
+        speedUpgradeButton.interactable = SaveDataManager.pointsCollected > speedUpgradeCost;
+
+        // if (SaveDataManager.pointsCollected < damageUpgradeCost) {
+        //     damageUpgradeButton.interactable = false;
+        // }
+        // if (SaveDataManager.pointsCollected < magazineUpgradeCost) {
+        //     magazineUpgradeButton.interactable = false;
+        // }
+        // if (SaveDataManager.pointsCollected < speedUpgradeCost) {
+        //     speedUpgradeButton.interactable = false;
+        // }
 
         damageUpgradeCostText.SetText("Cost: " + damageUpgradeCost);
         magazineUpgradeCostText.SetText("Cost: " + magazineUpgradeCost);
@@ -45,8 +53,6 @@ public class UpgradeScreen : MonoBehaviour
         magazineUpgradeCountText.SetText("x" + SaveDataManager.magazineUpgradeCount);
         speedUpgradeCountText.SetText("x" + SaveDataManager.speedUpgradeCount);
     }
-
-    
 
     public void PurchasedDamageUpgrade() {
         SaveDataManager.pointsCollected -= damageUpgradeCost;

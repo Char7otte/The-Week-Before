@@ -12,12 +12,8 @@ public class EnemySpawnController : MonoBehaviour
     [SerializeField]private LayerMask layerToHit;
 
     [Header("SpawnTimer")]
-    private float timeToSpawn;
+    public float timeToSpawn;
     private float spawnTimer;
-
-    private void Start() {
-        timeToSpawn = GameManager.Instance.enemyTimeToSpawn;
-    }
 
     private void Update() {
         if (spawnTimer >= timeToSpawn) InstantiateEnemy();

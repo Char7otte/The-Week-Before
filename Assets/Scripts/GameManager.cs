@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     public GameObject[] playerCharacters;
 
     [Header("Player")]
-    [HideInInspector]public GameObject player;
+    public static GameObject player;
     private HealthComponent playerHealthComponent;
     private DeathComponent playerDeathComponent;
     private AudioManagerComponent playerAudioManagerComponent;
@@ -18,40 +18,36 @@ public class GameManager : MonoBehaviour
 
     [Header("UI")]
     [SerializeField]private GameObject gameOverScreen;
-    [HideInInspector]public bool playerIsDead = false;
     [SerializeField]private GameObject pauseScreen;
     [HideInInspector]public bool isPaused;
     [SerializeField]private GameObject optionsMenu;
 
     [Header("Trackers")]
     public int minutesToSurviveToWin = 5;
-    [HideInInspector]public float secondsElapsed;
-    [HideInInspector]public int minutesElapsed;
-    public int killCount;
+    [HideInInspector]public float secondsElapsed = 0;
+    [HideInInspector]public int minutesElapsed = 0;
+    [HideInInspector]public int killCount = 0;
 
     [Header("DifficultyScaling")]
-    public float enemyTimeToSpawn = 3;
-    public float difficultyScalingIntervalInSeconds = 5;
-    public float difficultyScale = 1.1f;
-    [HideInInspector]public float difficultyScaleTimer;
-
-    public int points;
+    [SerializeField]private GameObject enemySpawnController;
+    [SerializeField]private float difficultyScalingIntervalInSeconds = 5;
+    public float difficultyScaleMultiplier = 1.1f;
+    [HideInInspector]public int difficultyScaleMultiplierAmount = 0;
+    private float difficultyScaleTimer = 0;
 
     private void Awake() {
         if (Instance != null && Instance != this) Destroy(this);
         else Instance = this;
     }
 
-    private void OnLevelWasLoaded() {
+    private void Start() {
         AssignChosenCharacter();
-
-        playerHealthComponent = player.GetComponent<HealthComponent>();
-        playerDeathComponent = player.GetComponent<DeathComponent>();
-        playerAudioManagerComponent = player.GetComponent<AudioManagerComponent>();
-        playerAnimator = player.GetComponent<Animator>();
+        RunOnStart();
     }
 
     private void Update() {
+        if (player == null) return;
+
         if (playerDeathComponent.isAlive) {
             RunTimer();
         }
@@ -63,8 +59,19 @@ public class GameManager : MonoBehaviour
             isPaused = pauseScreen.activeSelf;
             pauseScreen.SetActive(!isPaused);
         }
+    }
 
-        points = SaveDataManager.pointsCollected;
+    private void RunOnStart() {
+        playerHealthComponent = player.GetComponent<HealthComponent>();
+        playerDeathComponent = player.GetComponent<DeathComponent>();
+        playerAudioManagerComponent = player.GetComponent<AudioManagerComponent>();
+        playerAnimator = player.GetComponent<Animator>();
+
+        secondsElapsed = 0;
+        minutesElapsed = 0;
+        killCount = 0;
+        difficultyScaleMultiplierAmount = 0;
+        difficultyScaleTimer = 0.0f;
     }
 
     public void AssignChosenCharacter() {
@@ -98,7 +105,8 @@ public class GameManager : MonoBehaviour
 
     public void RunTimer() {
         secondsElapsed += Time.deltaTime;
-        if (secondsElapsed >= 60.0f) {
+        secondsElapsed = Mathf.Min(secondsElapsed, 60.0f);
+        if (secondsElapsed == 60.0f) {
             secondsElapsed = 0.0f;
             minutesElapsed++;
         }
@@ -108,13 +116,12 @@ public class GameManager : MonoBehaviour
 
         difficultyScaleTimer += Time.deltaTime;
         if (difficultyScaleTimer >= difficultyScalingIntervalInSeconds) {
-            //ScaleDifficultyUp();
+            difficultyScaleMultiplierAmount++;
             difficultyScaleTimer = 0.0f;
-        }
-    }
 
-    //public void ScaleDifficultyUp() {
-    //     enemyDamage *= difficultyScale;
-    //     enemyTimeToSpawn /= difficultyScale;
-    // }
+            var enemySpawnControllerScript = enemySpawnController.GetComponent<EnemySpawnController>();
+            enemySpawnControllerScript.timeToSpawn /= (difficultyScaleMultiplier * difficultyScaleMultiplierAmount);
+        }
+     
+    }
 }

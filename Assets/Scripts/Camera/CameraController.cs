@@ -17,7 +17,7 @@ public class CameraController : MonoBehaviour
     private Vector3 player_position;
 
     private void Start() {
-        player = GameManager.Instance.player.transform;
+        player = GameManager.player.transform;
     }
 
     private void Update() {

@@ -21,9 +21,9 @@ public class ActiveGameUI : MonoBehaviour
     private GunController gunController;
 
     private void Start() {
-        gunController = GameManager.Instance.player.GetComponent<GunController>();
-        healthComponent = GameManager.Instance.player.GetComponent<HealthComponent>();
-        playerMovementController = GameManager.Instance.player.GetComponent<PlayerMovementController>();
+        gunController = GameManager.player.GetComponent<GunController>();
+        healthComponent = GameManager.player.GetComponent<HealthComponent>();
+        playerMovementController = GameManager.player.GetComponent<PlayerMovementController>();
     }
 
     private void Update() {

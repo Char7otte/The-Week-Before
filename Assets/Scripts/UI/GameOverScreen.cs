@@ -11,7 +11,7 @@ public class GameOverScreen : MonoBehaviour
     private void OnEnable() {
         Time.timeScale = 0.0f;
 
-        if (!GameManager.Instance.playerIsDead) ChangeTextColorToGreen();
+        if (GameManager.player.GetComponent<DeathComponent>().isAlive) ChangeTextColorToGreen();
         UpdateUIText();
     }
 
