@@ -5,7 +5,7 @@ using UnityEngine;
 public class HealthComponent : MonoBehaviour
 {   
     public float maxHealth;
-    [HideInInspector]public float currentHealth;
+    [HideInInspector]public float currentHealth = 1;
 
     private AudioManagerComponent audioManagerComponent;
 
