@@ -29,7 +29,7 @@ public class ActiveGameUI : MonoBehaviour
     private void Update() {
         var minutesElapsed = GameManager.Instance.minutesElapsed;
         var secondsElapsed = GameManager.Instance.secondsElapsed;
-        timerText.SetText(minutesElapsed.ToString("00" + " : " + secondsElapsed.ToString("00")));
+        timerText.SetText(minutesElapsed.ToString("00") + " : " + secondsElapsed.ToString("00"));
 
         var currentHealth = healthComponent.currentHealth;
         var maxHealth = healthComponent.maxHealth;
