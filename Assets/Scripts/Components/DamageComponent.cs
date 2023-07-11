@@ -5,8 +5,4 @@ using UnityEngine;
 public class DamageComponent : MonoBehaviour
 {
     public float damage;
-
-    public void DamageAfterScaling() {
-
-    }
 }

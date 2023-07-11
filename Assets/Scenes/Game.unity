@@ -622,6 +622,7 @@ MonoBehaviour:
   difficultyScalingIntervalInSeconds: 5
   difficultyScale: 1.1
   difficultyScaleTimer: 0
+  points: 0
 --- !u!4 &59570627
 Transform:
   m_ObjectHideFlags: 0
@@ -3155,24 +3156,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 20
   currentHealth: 0
---- !u!114 &325605641
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3566632994535877074}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20efa10629536454a8a349a1107a948a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxStamina: 100
-  currentStamina: 0
-  staminaDrainSpeed: 30
-  staminaRegenerateSpeed: 7
-  timeBeforeStaminaRegenerates: 3
-  sprintSpeedMultiplier: 1.2
 --- !u!1001 &327020680
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -29722,8 +29705,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 1500
-  maxStamina: 0
+  maxStamina: 100
   currentStamina: 0
+  staminaDrainSpeed: 30
+  staminaRegenerateSpeed: 5
+  timeBeforeStaminaRegenerates: 3
+  sprintSpeedMultiplier: 1.2
 --- !u!1 &2629030289639194172
 GameObject:
   m_ObjectHideFlags: 0
@@ -30171,7 +30158,6 @@ GameObject:
   - component: {fileID: 7981066835983872526}
   - component: {fileID: 347283203167408752}
   - component: {fileID: 325605640}
-  - component: {fileID: 325605641}
   - component: {fileID: 7981066835983872528}
   - component: {fileID: 7981066835983872527}
   m_Layer: 0
@@ -30372,24 +30358,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 30
   currentHealth: 20
---- !u!114 &4223434606153592320
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8614993373500703264}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20efa10629536454a8a349a1107a948a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxStamina: 120
-  currentStamina: 0
-  staminaDrainSpeed: 30
-  staminaRegenerateSpeed: 5
-  timeBeforeStaminaRegenerates: 3
-  sprintSpeedMultiplier: 1.2
 --- !u!1 &4234103679715187305
 GameObject:
   m_ObjectHideFlags: 0
@@ -30637,9 +30605,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58fbe0bc0cdcadf438f87231d20a3479, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 1500
-  maxStamina: 0
+  movementSpeed: 1200
+  maxStamina: 120
   currentStamina: 0
+  staminaDrainSpeed: 30
+  staminaRegenerateSpeed: 5
+  timeBeforeStaminaRegenerates: 3
+  sprintSpeedMultiplier: 1.2
 --- !u!4 &5808211222078131752
 Transform:
   m_ObjectHideFlags: 0
@@ -31786,7 +31758,6 @@ GameObject:
   - component: {fileID: 8285063066771723690}
   - component: {fileID: 8679815141569409316}
   - component: {fileID: 4223434606153592319}
-  - component: {fileID: 4223434606153592320}
   - component: {fileID: 8679815141569409315}
   - component: {fileID: 8679815141569409317}
   m_Layer: 0

@@ -21,6 +21,12 @@ public class SaveDataManager : MonoBehaviour
         LoadAllData();
     }
 
+    private void Update() {
+        if (Input.GetKeyDown(KeyCode.P)) {
+            pointsCollected += 50;
+        }
+    }
+
     public void SaveDataInt(string dataName, int value) {
         PlayerPrefs.SetInt(dataName, value);
     }
@@ -34,5 +40,18 @@ public class SaveDataManager : MonoBehaviour
         damageUpgradeCount = LoadDataInt("DamageUpgradeCount");
         magazineUpgradeCount = LoadDataInt("MagazineUpgradeCount");
         speedUpgradeCount = LoadDataInt("SpeedUpgradeCount"); 
+    }
+
+    public void ResetData(string dataName) {
+        PlayerPrefs.DeleteKey(dataName);
+    }
+
+    public void ResetAllProgressionData() {
+        ResetData("Points");
+        ResetData("DamageUpgradeCount");
+        ResetData("MagazineUpgradeCount");
+        ResetData("SpeedUpgradeCount");
+
+        LoadAllData();
     }
 }

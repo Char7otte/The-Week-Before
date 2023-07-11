@@ -13,7 +13,7 @@ public class CollisionComponent : MonoBehaviour
     private bool attacking = false;
 
     void Start() {
-        player = GameManager.Instance.player;
+        player = GameManager.player;
         playerGunDamage = player.GetComponent<GunController>().damage;
         
         healthComponent = GetComponent<HealthComponent>();

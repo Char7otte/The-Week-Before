@@ -16,6 +16,5 @@ public class CharacterSelector : MonoBehaviour
 
     public void SelectCharacter(string character) {
         playerCharacterSelected = character;
-        print(playerCharacterSelected);
     }
 }
