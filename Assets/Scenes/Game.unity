@@ -608,21 +608,18 @@ MonoBehaviour:
   playerCharacters:
   - {fileID: 8614993373500703264}
   - {fileID: 3566632994535877074}
-  player: {fileID: 3566632994535877074}
   gameOverScreen: {fileID: 1481348826}
-  playerIsDead: 0
   pauseScreen: {fileID: 447068180}
   isPaused: 0
   optionsMenu: {fileID: 1382766746}
-  minutesToSurviveToWin: 1
+  minutesToSurviveToWin: 3
   secondsElapsed: 0
   minutesElapsed: 0
   killCount: 0
-  enemyTimeToSpawn: 3
+  enemySpawnController: {fileID: 800452082}
   difficultyScalingIntervalInSeconds: 5
-  difficultyScale: 1.1
-  difficultyScaleTimer: 0
-  points: 0
+  difficultyScaleMultiplier: 0.05
+  difficultyScaleMultiplierAmount: 0
 --- !u!4 &59570627
 Transform:
   m_ObjectHideFlags: 0
@@ -9535,6 +9532,8 @@ MonoBehaviour:
   layerToHit:
     serializedVersion: 2
     m_Bits: 64
+  timeToSpawn: 3
+  timeToSpawnAfterScaling: 0
 --- !u!4 &800452084
 Transform:
   m_ObjectHideFlags: 0
@@ -29704,13 +29703,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58fbe0bc0cdcadf438f87231d20a3479, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 1500
+  movementSpeed: 1300
   maxStamina: 100
   currentStamina: 0
   staminaDrainSpeed: 30
-  staminaRegenerateSpeed: 5
-  timeBeforeStaminaRegenerates: 3
-  sprintSpeedMultiplier: 1.2
+  staminaRegenerateSpeed: 30
+  timeBeforeStaminaRegenerates: 2
+  sprintSpeedMultiplier: 1.5
 --- !u!1 &2629030289639194172
 GameObject:
   m_ObjectHideFlags: 0
@@ -30356,7 +30355,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6a0b5c66029d6744b86070c64810361, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 30
+  maxHealth: 1
   currentHealth: 20
 --- !u!1 &4234103679715187305
 GameObject:
@@ -30609,9 +30608,9 @@ MonoBehaviour:
   maxStamina: 120
   currentStamina: 0
   staminaDrainSpeed: 30
-  staminaRegenerateSpeed: 5
-  timeBeforeStaminaRegenerates: 3
-  sprintSpeedMultiplier: 1.2
+  staminaRegenerateSpeed: 30
+  timeBeforeStaminaRegenerates: 2
+  sprintSpeedMultiplier: 1.5
 --- !u!4 &5808211222078131752
 Transform:
   m_ObjectHideFlags: 0
@@ -31021,9 +31020,53 @@ PrefabInstance:
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1406858193}
+    - target: {fileID: 3001632449246301576, guid: 98cc0f4e1b2d2664287b102adf8c82ce, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3001632449246301576, guid: 98cc0f4e1b2d2664287b102adf8c82ce, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3001632449246301576, guid: 98cc0f4e1b2d2664287b102adf8c82ce, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3546615710732979043, guid: 98cc0f4e1b2d2664287b102adf8c82ce, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3546615710732979043, guid: 98cc0f4e1b2d2664287b102adf8c82ce, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3658854816923202732, guid: 98cc0f4e1b2d2664287b102adf8c82ce, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3658854816923202732, guid: 98cc0f4e1b2d2664287b102adf8c82ce, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3658854816923202732, guid: 98cc0f4e1b2d2664287b102adf8c82ce, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4021701275665253309, guid: 98cc0f4e1b2d2664287b102adf8c82ce, type: 3}
       propertyPath: m_Name
       value: OptionsScreen
+      objectReference: {fileID: 0}
+    - target: {fileID: 4021701275665253309, guid: 98cc0f4e1b2d2664287b102adf8c82ce, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4523854729114286735, guid: 98cc0f4e1b2d2664287b102adf8c82ce, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4523854729114286735, guid: 98cc0f4e1b2d2664287b102adf8c82ce, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4753395154756660237, guid: 98cc0f4e1b2d2664287b102adf8c82ce, type: 3}
       propertyPath: m_Pivot.x
@@ -31113,10 +31156,46 @@ PrefabInstance:
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1406858193}
+    - target: {fileID: 7724250789874169399, guid: 98cc0f4e1b2d2664287b102adf8c82ce, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7724250789874169399, guid: 98cc0f4e1b2d2664287b102adf8c82ce, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7724250789874169399, guid: 98cc0f4e1b2d2664287b102adf8c82ce, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8432782847485248475, guid: 98cc0f4e1b2d2664287b102adf8c82ce, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8432782847485248475, guid: 98cc0f4e1b2d2664287b102adf8c82ce, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8597666119970639749, guid: 98cc0f4e1b2d2664287b102adf8c82ce, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8597666119970639749, guid: 98cc0f4e1b2d2664287b102adf8c82ce, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 769773835}
+    - target: {fileID: 8597666119970639749, guid: 98cc0f4e1b2d2664287b102adf8c82ce, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: EnableAndDisableGameObject
+      objectReference: {fileID: 0}
+    - target: {fileID: 8597666119970639749, guid: 98cc0f4e1b2d2664287b102adf8c82ce, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 1382766746}
+    - target: {fileID: 8597666119970639749, guid: 98cc0f4e1b2d2664287b102adf8c82ce, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

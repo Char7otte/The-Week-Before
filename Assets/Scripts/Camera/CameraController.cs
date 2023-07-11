@@ -21,6 +21,7 @@ public class CameraController : MonoBehaviour
     }
 
     private void Update() {
+        if (player == null) return;
         position = transform.position;
         player_position = player.transform.position;
         

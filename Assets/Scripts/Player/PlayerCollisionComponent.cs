@@ -25,7 +25,7 @@ public class PlayerCollisionComponent : MonoBehaviour
         invincibilityFramesTimer = invincibilityFramesDuration;
 
         var enemyDamage = enemyDamageComponent.damage;
-        var enemyDamageAfterScaling = enemyDamage * (GameManager.Instance.difficultyScaleMultiplier * GameManager.Instance.difficultyScaleMultiplierAmount);
+        var enemyDamageAfterScaling = enemyDamage + (GameManager.Instance.difficultyScaleMultiplier * GameManager.Instance.difficultyScaleMultiplierAmount);
         var healthComponent = GetComponent<HealthComponent>();
         healthComponent.DealDamage(enemyDamageAfterScaling);
     }
