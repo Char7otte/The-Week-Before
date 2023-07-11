@@ -37,7 +37,7 @@ public class DeathComponent : MonoBehaviour
     }
 
     private void DisableTheseComponentsUponDeath() {
-        GetComponent<Collider>().enabled = false; //Colliders can be enabled & disabled, but they don't inherit from Behaviour. WHY????????
+        GetComponent<Collider>().enabled = false; //Stuff like this is why I prefer Godot. Colliders don't inherit from Behaviour for some reason.
 
         foreach(Behaviour behaviour in componentsToDisable) {
             behaviour.enabled = false;

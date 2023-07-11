@@ -14,13 +14,6 @@ public class PlayerCollisionComponent : MonoBehaviour
         invincibilityFramesTimer = Mathf.Max(invincibilityFramesTimer, 0.0f);
     }
 
-    // private void OnCollisionEnter(Collision collision) {
-    //     if (collision.gameObject.tag == "Enemy" && invincibilityFramesTimer <= 0)  {
-    //         var enemyCollisionComponent = collision.GetComponent<CollisionComponent>();
-    //         EnemyCollision(enemyCollisionComponent);
-    //     }
-    // }
-
     private void OnCollisionStay(Collision collision) {
         if (collision.gameObject.tag == "Enemy" && invincibilityFramesTimer <= 0) {
             var damageComponent = collision.gameObject.GetComponent<DamageComponent>();
@@ -32,13 +25,8 @@ public class PlayerCollisionComponent : MonoBehaviour
         invincibilityFramesTimer = invincibilityFramesDuration;
 
         var enemyDamage = enemyDamageComponent.damage;
+        var enemyDamageAfterScaling = enemyDamage * (GameManager.Instance.difficultyScaleMultiplier * GameManager.Instance.difficultyScaleMultiplierAmount);
         var healthComponent = GetComponent<HealthComponent>();
-        healthComponent.DealDamage(enemyDamage);
-    
-        // if (healthComponent.isDead) {
-        //     DisableComponentsUponDeath();
-        //     animator.SetTrigger("dead");
-        //     Invoke("CallGameOverInGameManager", animator.GetCurrentAnimatorStateInfo(0).length * 2);
-        // }
+        healthComponent.DealDamage(enemyDamageAfterScaling);
     }
 }

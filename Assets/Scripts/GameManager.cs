@@ -122,6 +122,5 @@ public class GameManager : MonoBehaviour
             var enemySpawnControllerScript = enemySpawnController.GetComponent<EnemySpawnController>();
             enemySpawnControllerScript.timeToSpawn /= (difficultyScaleMultiplier * difficultyScaleMultiplierAmount);
         }
-     
     }
 }
