@@ -15,6 +15,7 @@ public class EnemyMovementController : MonoBehaviour
     }
 
     private void Update() {
+        if (player == null) return;
         transform.LookAt(player.transform.position);
         transform.position += transform.forward * movementSpeed * Time.deltaTime;
     }

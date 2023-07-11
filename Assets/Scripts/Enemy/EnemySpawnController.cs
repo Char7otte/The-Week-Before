@@ -13,10 +13,15 @@ public class EnemySpawnController : MonoBehaviour
 
     [Header("SpawnTimer")]
     public float timeToSpawn;
+    public float timeToSpawnAfterScaling;
     private float spawnTimer;
 
+    private void Start() {
+        timeToSpawnAfterScaling = timeToSpawn;
+    }
+
     private void Update() {
-        if (spawnTimer >= timeToSpawn) InstantiateEnemy();
+        if (spawnTimer >= timeToSpawnAfterScaling) InstantiateEnemy();
 
         spawnTimer += Time.deltaTime;
     }

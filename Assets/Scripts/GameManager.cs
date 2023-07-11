@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
     [Header("DifficultyScaling")]
     [SerializeField]private GameObject enemySpawnController;
     [SerializeField]private float difficultyScalingIntervalInSeconds = 5;
-    public float difficultyScaleMultiplier = 1.1f;
+    public float difficultyScaleMultiplier = 0.1f;
     [HideInInspector]public int difficultyScaleMultiplierAmount = 0;
     private float difficultyScaleTimer = 0;
 
@@ -55,9 +55,10 @@ public class GameManager : MonoBehaviour
             GameOver();
         }
 
-        if (Input.GetKeyDown(KeyCode.Escape) && !optionsMenu.activeSelf) {
-            isPaused = pauseScreen.activeSelf;
+        isPaused = pauseScreen.activeSelf;
+        if (Input.GetKeyDown(KeyCode.Escape)) {
             pauseScreen.SetActive(!isPaused);
+            if (isPaused && optionsMenu.activeSelf) optionsMenu.SetActive(false);
         }
     }
 
@@ -120,7 +121,8 @@ public class GameManager : MonoBehaviour
             difficultyScaleTimer = 0.0f;
 
             var enemySpawnControllerScript = enemySpawnController.GetComponent<EnemySpawnController>();
-            enemySpawnControllerScript.timeToSpawn /= (difficultyScaleMultiplier * difficultyScaleMultiplierAmount);
+            enemySpawnControllerScript.timeToSpawnAfterScaling = enemySpawnControllerScript.timeToSpawn - (difficultyScaleMultiplier * difficultyScaleMultiplierAmount);
+            //Damage is calculated in PlayerCollisionComponent & spawns in EnemySpawnControlelr
         }
     }
 }
