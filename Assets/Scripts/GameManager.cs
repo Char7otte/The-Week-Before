@@ -86,7 +86,7 @@ public class GameManager : MonoBehaviour
                 player = playerCharacters[1];
                 break;
             default:
-                player = playerCharacters[0];
+                player = playerCharacters[1];
                 print("Error. Character selected is invalid, defaulting.");
                 break;
         }

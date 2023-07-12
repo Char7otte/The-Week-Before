@@ -31511,9 +31511,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67d16a14f301ae9439ae8e94b1507101, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 2
-  maxMagazineSize: 30
-  timeBetweenShots: 0.1
+  damage: 1.5
+  maxMagazineSize: 20
+  timeBetweenShots: 0.2
   remainingBulletsInMagazine: 0
   bulletPrefab: {fileID: 3737934860874390273, guid: e381297094c755f40825bebc3cadbc64, type: 3}
   bulletSpawnPoint: {fileID: 4549691639746915668}
@@ -31647,7 +31647,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67d16a14f301ae9439ae8e94b1507101, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 4
+  damage: 5
   maxMagazineSize: 11
   timeBetweenShots: 0.5
   remainingBulletsInMagazine: 0
