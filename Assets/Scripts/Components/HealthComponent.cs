@@ -5,15 +5,13 @@ using UnityEngine;
 public class HealthComponent : MonoBehaviour
 {   
     public float maxHealth;
-    [HideInInspector]public float currentHealth = 1;
-
+    [HideInInspector]public float currentHealth = 1; //Has to be set above 0 because DeathComponent will think the player is dead before 
+                                                     //before currentHealth is properly set otherwise. (Bug happens on restarts)
     private AudioManagerComponent audioManagerComponent;
 
     private void Start() {
-        audioManagerComponent = GetComponent<AudioManagerComponent>();
-
         currentHealth = maxHealth;
-
+        audioManagerComponent = GetComponent<AudioManagerComponent>();
     }
 
     public void DealDamage(float damageDealt) {

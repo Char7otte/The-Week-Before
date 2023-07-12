@@ -28,7 +28,10 @@ public class GameOverScreen : MonoBehaviour
     }
 
     private void UpdateUIText() {
-        timerText.SetText(GameManager.Instance.minutesElapsed.ToString("00") + " : " + GameManager.Instance.secondsElapsed.ToString("00"));
+        var minutesElapsed = GameManager.Instance.minutesElapsed;
+        var secondsElapsed = GameManager.Instance.secondsElapsed;
+        timerText.SetText(minutesElapsed.ToString("00") + " : " + secondsElapsed.ToString("00"));
+
         killCounterText.SetText(GameManager.Instance.killCount.ToString());
     }
 }

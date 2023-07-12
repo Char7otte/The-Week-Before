@@ -8,6 +8,7 @@ public class CollisionComponent : MonoBehaviour
     private float playerGunDamage;
 
     private HealthComponent healthComponent;
+    private EnemyMovementController enemyMovementController;
     private Animator animator;
 
     private bool attacking = false;
@@ -17,6 +18,7 @@ public class CollisionComponent : MonoBehaviour
         playerGunDamage = player.GetComponent<GunController>().damage;
         
         healthComponent = GetComponent<HealthComponent>();
+        enemyMovementController = GetComponent<EnemyMovementController>();
         animator = GetComponent<Animator>();
     }
 
@@ -35,13 +37,14 @@ public class CollisionComponent : MonoBehaviour
     private void PlayAttackAnimation() {
         if (!attacking) {
             attacking = true;
-
             animator.SetTrigger("attack");
+            enemyMovementController.enabled = false;
             Invoke("AttackingHasFinished", animator.GetCurrentAnimatorStateInfo(0).length);
         }
     }
 
     private void AttackingHasFinished() {
         attacking = false;
+        enemyMovementController.enabled = true;
     }
 }

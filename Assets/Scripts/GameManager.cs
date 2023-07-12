@@ -23,9 +23,10 @@ public class GameManager : MonoBehaviour
     [SerializeField]private GameObject optionsMenu;
 
     [Header("Trackers")]
-    public int minutesToSurviveToWin = 5;
-    [HideInInspector]public float secondsElapsed = 0;
-    [HideInInspector]public int minutesElapsed = 0;
+    public int timeToWin = 180;
+    public float timeElapsed = 0;
+    public float secondsElapsed = 0;
+    public float minutesElapsed = 0;
     [HideInInspector]public int killCount = 0;
 
     [Header("DifficultyScaling")]
@@ -68,6 +69,7 @@ public class GameManager : MonoBehaviour
         playerAudioManagerComponent = player.GetComponent<AudioManagerComponent>();
         playerAnimator = player.GetComponent<Animator>();
 
+        timeElapsed = 0;
         secondsElapsed = 0;
         minutesElapsed = 0;
         killCount = 0;
@@ -105,15 +107,11 @@ public class GameManager : MonoBehaviour
     }
 
     public void RunTimer() {
-        secondsElapsed += Time.deltaTime;
-        secondsElapsed = Mathf.Min(secondsElapsed, 60.0f);
-        if (secondsElapsed == 60.0f) {
-            secondsElapsed = 0.0f;
-            minutesElapsed++;
-        }
-        if (minutesElapsed >= minutesToSurviveToWin) {
-            GameOver();
-        }
+        timeElapsed += Time.deltaTime;
+        minutesElapsed = Mathf.FloorToInt(timeElapsed / 60);
+        secondsElapsed = Mathf.FloorToInt(timeElapsed % 60);
+
+        if (timeElapsed >= timeToWin) GameOver();
 
         difficultyScaleTimer += Time.deltaTime;
         if (difficultyScaleTimer >= difficultyScalingIntervalInSeconds) {

@@ -612,7 +612,8 @@ MonoBehaviour:
   pauseScreen: {fileID: 447068180}
   isPaused: 0
   optionsMenu: {fileID: 1382766746}
-  minutesToSurviveToWin: 3
+  timeToWin: 30
+  timeElapsed: 0
   secondsElapsed: 0
   minutesElapsed: 0
   killCount: 0
@@ -3151,8 +3152,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6a0b5c66029d6744b86070c64810361, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 20
-  currentHealth: 0
+  maxHealth: 50
+  currentHealth: 1
 --- !u!1001 &327020680
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -29706,7 +29707,7 @@ MonoBehaviour:
   movementSpeed: 1300
   maxStamina: 100
   currentStamina: 0
-  staminaDrainSpeed: 30
+  staminaDrainSpeed: 20
   staminaRegenerateSpeed: 30
   timeBeforeStaminaRegenerates: 2
   sprintSpeedMultiplier: 1.5
@@ -30355,8 +30356,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6a0b5c66029d6744b86070c64810361, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 1
-  currentHealth: 20
+  maxHealth: 100
+  currentHealth: 1
 --- !u!1 &4234103679715187305
 GameObject:
   m_ObjectHideFlags: 0
@@ -30605,9 +30606,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 1200
-  maxStamina: 120
+  maxStamina: 100
   currentStamina: 0
-  staminaDrainSpeed: 30
+  staminaDrainSpeed: 20
   staminaRegenerateSpeed: 30
   timeBeforeStaminaRegenerates: 2
   sprintSpeedMultiplier: 1.5
