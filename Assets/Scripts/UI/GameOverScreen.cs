@@ -8,6 +8,8 @@ public class GameOverScreen : MonoBehaviour
     [SerializeField]private TextMeshProUGUI timerText;
     [SerializeField]private TextMeshProUGUI killCounterText;
 
+    [SerializeField]private Transform anchor;
+
     private void OnEnable() {
         Time.timeScale = 0.0f;
 
@@ -19,8 +21,8 @@ public class GameOverScreen : MonoBehaviour
         Time.timeScale = 1.0f;
     }
 
-    private void ChangeTextColorToGreen() {
-         foreach (Transform child in transform) {
+    public void ChangeTextColorToGreen() {
+         foreach (Transform child in anchor) {
             if (child.GetComponent<TextMeshProUGUI>() != null) {
                 child.GetComponent<TextMeshProUGUI>().color = new Color(0, 255, 0, 255);
             }

@@ -520,6 +520,7 @@ MonoBehaviour:
   isAlive: 1
   componentsToDisable:
   - {fileID: 1091261361191970722}
+  - {fileID: 2757769580061605072}
 --- !u!114 &6850073889094072538
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -557,7 +558,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3335a3618da44714a8598ba35b540c0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  medkitPrefab: {fileID: 2700060839685301186, guid: e42f86feb73a59f4b8a067242456f367, type: 3}
+  medkitPrefab: {fileID: 1590616400047899374, guid: e42f86feb73a59f4b8a067242456f367, type: 3}
   medkitPrefabDropChance: 5
   pointsPrefab: {fileID: 5017114196763338582, guid: 80674305c03e81d4eb816c129bca117c, type: 3}
 --- !u!1 &1091261361224327587

@@ -22,6 +22,10 @@ public class CollisionComponent : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
+    private void Update() {
+        enemyMovementController.enabled = !attacking;
+    }
+
     private void OnCollisionStay(Collision collision) {
         if (collision.gameObject.tag == "Player") {
             PlayAttackAnimation();
@@ -38,13 +42,11 @@ public class CollisionComponent : MonoBehaviour
         if (!attacking) {
             attacking = true;
             animator.SetTrigger("attack");
-            enemyMovementController.enabled = false;
             Invoke("AttackingHasFinished", animator.GetCurrentAnimatorStateInfo(0).length);
         }
     }
 
     private void AttackingHasFinished() {
         attacking = false;
-        enemyMovementController.enabled = true;
     }
 }
