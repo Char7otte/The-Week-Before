@@ -16,15 +16,14 @@ public class PlayerCollisionComponent : MonoBehaviour
 
     private void OnCollisionStay(Collision collision) {
         if (collision.gameObject.tag == "Enemy" && invincibilityFramesTimer <= 0) {
-            var damageComponent = collision.gameObject.GetComponent<DamageComponent>();
-            EnemyCollision(damageComponent);
+            var enemyDamage = collision.gameObject.GetComponent<DamageComponent>().damage;
+            EnemyCollision(enemyDamage);
         }
     }
 
-    private void EnemyCollision(DamageComponent enemyDamageComponent) {
+    private void EnemyCollision(float enemyDamage) {
         invincibilityFramesTimer = invincibilityFramesDuration;
 
-        var enemyDamage = enemyDamageComponent.damage;
         var enemyDamageAfterScaling = enemyDamage + (GameManager.Instance.difficultyScaleMultiplier * GameManager.Instance.difficultyScaleMultiplierAmount);
         var healthComponent = GetComponent<HealthComponent>();
         healthComponent.DealDamage(enemyDamageAfterScaling);

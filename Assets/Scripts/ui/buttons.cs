@@ -5,6 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class Buttons : MonoBehaviour
 {
+    private AudioManagerComponent audioManagerComponent;
+
+    private void Start() {
+        audioManagerComponent = GetComponent<AudioManagerComponent>();
+    }
+
     public void StartGame() {
         SceneManager.LoadScene("Game");
     }
@@ -19,5 +25,10 @@ public class Buttons : MonoBehaviour
 
     public void EnableAndDisableGameObject(GameObject obj){
         obj.SetActive(!obj.activeSelf);
+        PlayButtonClick();
+    }
+
+    public void PlayButtonClick() {
+        audioManagerComponent.Play("button_click");
     }
 }

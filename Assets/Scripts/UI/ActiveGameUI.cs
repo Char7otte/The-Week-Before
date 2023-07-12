@@ -6,9 +6,10 @@ using UnityEngine.UI;
 
 public class ActiveGameUI : MonoBehaviour
 {
+    [SerializeField]private TextMeshProUGUI tutorialText;
+
     [SerializeField]private TextMeshProUGUI timerText;
 
-    
     [SerializeField]private Image healthbarImage;
     [SerializeField]private TextMeshProUGUI healthText;
     private HealthComponent healthComponent;
@@ -24,6 +25,8 @@ public class ActiveGameUI : MonoBehaviour
         gunController = GameManager.player.GetComponent<GunController>();
         healthComponent = GameManager.player.GetComponent<HealthComponent>();
         playerMovementController = GameManager.player.GetComponent<PlayerMovementController>();
+
+        Destroy(tutorialText, 10);
     }
 
     private void Update() {

@@ -12,6 +12,6 @@ public class BulletMovementController : MonoBehaviour
     }
 
     private void Update() {
-        transform.position += transform.up * movementSpeed * Time.deltaTime;
+        transform.position += transform.forward * movementSpeed * Time.deltaTime;
     }
 }

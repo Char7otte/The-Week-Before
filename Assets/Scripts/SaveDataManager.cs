@@ -21,12 +21,6 @@ public class SaveDataManager : MonoBehaviour
         LoadAllData();
     }
 
-    private void Update() {
-        if (Input.GetKeyDown(KeyCode.P)) {
-            pointsCollected += 50;
-        }
-    }
-
     public void SaveDataInt(string dataName, int value) {
         PlayerPrefs.SetInt(dataName, value);
     }

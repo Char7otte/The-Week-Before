@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
     public float secondsElapsed = 0;
     public float minutesElapsed = 0;
     [HideInInspector]public int killCount = 0;
+    private bool gameEnded = false;
 
     [Header("DifficultyScaling")]
     [SerializeField]private GameObject enemySpawnController;
@@ -48,6 +49,7 @@ public class GameManager : MonoBehaviour
 
     private void Update() {
         if (player == null) return;
+        if (gameEnded) return;
 
         if (playerDeathComponent.isAlive) {
             RunTimer();
@@ -75,6 +77,7 @@ public class GameManager : MonoBehaviour
         killCount = 0;
         difficultyScaleMultiplierAmount = 0;
         difficultyScaleTimer = 0.0f;
+        gameEnded = false;
     }
 
     public void AssignChosenCharacter() {
@@ -95,14 +98,21 @@ public class GameManager : MonoBehaviour
     }
 
     public void GameOver() {
+        gameEnded = true;
         SaveDataManager.Instance.SaveDataInt("Points", SaveDataManager.pointsCollected);
-
         AudioManagerMaster.Instance.Stop("BGM");
-        Invoke("OpenGameOverScreen", playerAnimator.GetCurrentAnimatorStateInfo(0).length * 2);
+        OpenGameOverScreen();
+        //Invoke("OpenGameOverScreen", playerAnimator.GetCurrentAnimatorStateInfo(0).length * 2);
     }
 
     private void OpenGameOverScreen() {
-        if (playerDeathComponent.isAlive == false) killCount--; //The player dying adds to killCount, so it must be subtracted.
+        if (playerDeathComponent.isAlive == false)  {
+            killCount--; //The player dying adds to killCount, so it must be subtracted.
+            AudioManagerMaster.Instance.Play("LoseJingle");
+        }
+        else {
+            AudioManagerMaster.Instance.Play("WinJingle");
+        }
         gameOverScreen.SetActive(true);
     }
 
