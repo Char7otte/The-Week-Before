@@ -33,7 +33,7 @@ public class ActiveGameUI : MonoBehaviour
 
         var currentHealth = healthComponent.currentHealth;
         var maxHealth = healthComponent.maxHealth;
-        healthText.SetText("Health: " + (currentHealth * 5).ToString("0"));
+        healthText.SetText("Health: " + currentHealth.ToString("0"));
         healthbarImage.fillAmount = currentHealth / maxHealth;
 
         var currentStamina = playerMovementController.currentStamina;
