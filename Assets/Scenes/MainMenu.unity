@@ -1263,10 +1263,10 @@ RectTransform:
   m_Father: {fileID: 943472134}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1920, y: 1080}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &331052660
 MonoBehaviour:
@@ -7345,15 +7345,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pointsText: {fileID: 1849346567}
   damageUpgradeButton: {fileID: 964577167}
-  damageUpgradeCost: 50
+  damageUpgradeCost: 20
   damageUpgradeCostText: {fileID: 1297836589}
   damageUpgradeCountText: {fileID: 292743029}
   magazineUpgradeButton: {fileID: 1231694723}
-  magazineUpgradeCost: 50
+  magazineUpgradeCost: 20
   magazineUpgradeCostText: {fileID: 1431634891}
   magazineUpgradeCountText: {fileID: 1092823455}
   speedUpgradeButton: {fileID: 1715370856}
-  speedUpgradeCost: 50
+  speedUpgradeCost: 20
   speedUpgradeCostText: {fileID: 370250775}
   speedUpgradeCountText: {fileID: 1593731123}
 --- !u!1 &1957256573
