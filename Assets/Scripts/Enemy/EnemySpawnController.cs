@@ -5,19 +5,22 @@ using UnityEngine;
 public class EnemySpawnController : MonoBehaviour
 {
     [Header("InstantiatingEnemies")]
-    [SerializeField]private Transform enemySpawnAnchor; //idk what to call this lol
-    [SerializeField]private Transform enemySpawnLocation;
     [SerializeField]private Transform enemiesGroup;
     [SerializeField]private GameObject basicEnemyPrefab;
     [SerializeField]private LayerMask layerToHit;
+    private Transform enemySpawnAnchor; //idk what to call this lol
+    private Transform enemySpawnLocation;
 
     [Header("SpawnTimer")]
     public float timeToSpawn;
-    public float timeToSpawnAfterScaling;
+    [HideInInspector]public float timeToSpawnAfterScaling;
     private float spawnTimer;
 
     private void Start() {
         timeToSpawnAfterScaling = timeToSpawn;
+        var player = GameManager.player;
+        enemySpawnAnchor = player.transform.GetChild(0).transform;
+        enemySpawnLocation = enemySpawnAnchor.GetChild(0).transform;
     }
 
     private void Update() {
