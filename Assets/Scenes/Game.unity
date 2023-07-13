@@ -9692,8 +9692,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d732a94d554b2c41aec6037c42b605c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemySpawnAnchor: {fileID: 3547540533099883956}
-  enemySpawnLocation: {fileID: 838299864045694221}
   enemiesGroup: {fileID: 1798636424}
   basicEnemyPrefab: {fileID: 1091261361191970727, guid: 0e162782f4e680540995253dbc4d282b, type: 3}
   layerToHit:
@@ -31901,8 +31899,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67d16a14f301ae9439ae8e94b1507101, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1.5
-  maxMagazineSize: 24
+  damage: 2
+  maxMagazineSize: 30
   timeBetweenShots: 0.2
   remainingBulletsInMagazine: 0
   bulletPrefab: {fileID: 3737934860874390273, guid: e381297094c755f40825bebc3cadbc64, type: 3}
@@ -31927,7 +31925,7 @@ MonoBehaviour:
     audioClip: {fileID: 8300000, guid: a275995d390edc24096cad8ec615afe6, type: 3}
     playOnAwake: 0
     isLooping: 0
-    volume: 0.5
+    volume: 0.05
   - audioType: 1
     audioSource: {fileID: 0}
     clipName: reload
@@ -32302,7 +32300,7 @@ MonoBehaviour:
     audioClip: {fileID: 8300000, guid: 1e9d5f28f74d96a4ca9ac74ffaa6cde7, type: 3}
     playOnAwake: 0
     isLooping: 0
-    volume: 0.5
+    volume: 0.2
   - audioType: 1
     audioSource: {fileID: 0}
     clipName: reload
